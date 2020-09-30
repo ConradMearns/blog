@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Conrad Mearns">
+    
+    <meta name="keywords" content="conrad, mearns, blog">
+
+    <base href="http://conrads.website/">
+    <title>
+  Mathematical Seashells · Conrad&#39;s Website
+</title>
+
+    <link rel="canonical" href="http://conrads.website/posts/seashells/">
+
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="http://conrads.website/css/style.min.css">
+
+    <link rel="icon" type="image/png" href="http://conrads.website/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://conrads.website/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.73.0" />
+  </head>
+
+  <body>
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="http://conrads.website/">
+      Conrad&#39;s Website
+    </a>
+    
+    <ul class="navigation-list float-right">
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/about/">Resume</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/posts/">Blog</a>
+      </li>
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">Mathematical Seashells</h1>
+      <h2 class="date">August 1, 2018</h2>
+
+      
+    </header>
+
+    <p>In <a href="http://www.mat.uc.pt/~picado/conchas/eng/article.pdf">Seashells: The Plainness and Beauty of their Mathematical Description</a>, Jorge Picado describes the mathematics necessary to simulate the shape of a multitude of different seashells. In this post, I wanted to share some renders I created while implementing Picado&rsquo;s math into <a href="https://github.com/scenerygraphics/sciview">SciView</a> and how the fourteen parameters function.</p>
+<h2 id="defining-the-spiral">Defining the Spiral</h2>
+<p>The parameters <code>D</code>, <code>A</code>, <code>alpha</code> and <code>beta</code> allow us to construct any variety of spiral we want.</p>
+<p><code>D</code> specifies the chirality of the seashell - which direction it spirals.
+<figure>
+    <img src="D1A50alpha85beta10.png"
+         alt="Counterclockwise (D = 1)"/> <figcaption>
+            <p>Counterclockwise (D = 1)</p>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="D-1A50alpha85beta10.png"
+         alt="Clockwise (D = -1)"/> <figcaption>
+            <p>Clockwise (D = -1)</p>
+        </figcaption>
+</figure>
+</p>
+<p><code>A</code> determines how far the beginning of the spiral is from the center of rotation, although it also manifests itself into determining how the diameter changes in size. It&rsquo;s hard to see, but here is the same shell as above, with a smaller <code>A</code> value.
+<figure>
+    <img src="D1A10alpha85beta10.png"
+         alt="(A = 10)"/> <figcaption>
+            <p>(A = 10)</p>
+        </figcaption>
+</figure>
+</p>
+<p><code>alpha</code> is thankfully (a little) more straightforward. This value is the angle between a line drawn from the center of the spiral to any point on the surface, and the tangent at the point on the surface. In other words, it specifies the rate of spiraling.
+<figure>
+    <img src="alpha85.png"
+         alt="(alpha = 85 degrees)"/> <figcaption>
+            <p>(alpha = 85 degrees)</p>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="alpha80.png"
+         alt="(alpha = 80 degrees)"/> <figcaption>
+            <p>(alpha = 80 degrees)</p>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="alpha70.png"
+         alt="(alpha = 70 degrees)"/> <figcaption>
+            <p>(alpha = 70 degrees)</p>
+        </figcaption>
+</figure>
+
+This means that an angle of 90 degrees should create a circle (or a torus for this example)
+<figure>
+    <img src="alpha90.png"
+         alt="(alpha = 90 degrees)"/> <figcaption>
+            <p>(alpha = 90 degrees)</p>
+        </figcaption>
+</figure>
+</p>
+<p><code>beta</code> is even more simple than <code>alpha</code>. <code>beta</code> is the angle between the axis of rotation and the edge of the generating spiral. Here is the same spiral, but with varrying values of <code>beta</code>.</p>
+<p><figure>
+    <img src="beta5.png"
+         alt="(beta = 5 degrees)"/> <figcaption>
+            <p>(beta = 5 degrees)</p>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="beta10.png"
+         alt="(beta = 10 degrees)"/> <figcaption>
+            <p>(beta = 10 degrees)</p>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="beta20.png"
+         alt="(beta = 20 degrees)"/> <figcaption>
+            <p>(beta = 20 degrees)</p>
+        </figcaption>
+</figure>
+</p>
+<h2 id="making-shells">Making Shells</h2>
+<p>The above spirals, while still shells, are very thin on purpose. However, while they show the underlying spiral simply, they can&rsquo;t represent most seashells on their own. To do this, we must introduce an ellipse that will fill the space. This generating curve can be any shape, but for now it remains an ellipse.</p>
+<p>Defining the ellipse is done with two new variables <code>a</code> and <code>b</code> - the radii of the ellipse.
+<figure>
+    <img src="shell1.png"
+         alt="(a = 15 | b = 15)"/> <figcaption>
+            <p>(a = 15 | b = 15)</p>
+        </figcaption>
+</figure>
+</p>
+<p>Now that&rsquo;s a seashell! What happens when <code>a</code> and <code>b</code> change though?
+<figure>
+    <img src="shell2.png"
+         alt="(a = 5 | b = 15)"/> <figcaption>
+            <p>(a = 5 | b = 15)</p>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="shell3.png"
+         alt="(a = 15 | b = 5)"/> <figcaption>
+            <p>(a = 15 | b = 5)</p>
+        </figcaption>
+</figure>
+</p>
+<p>Yea the last one looks messed up, but the first one looks like it could pass as a real shell!</p>
+<h2 id="bonus-shell">Bonus Shell</h2>
+<p>At this point I surrender myself to the hour, and finish this post for now. In the meantime, here&rsquo;s something cool to look at.</p>
+<figure>
+    <img src="neat.png"
+         alt="(only Gabbar Singh knows what the parameters were now)"/> <figcaption>
+            <p>(only Gabbar Singh knows what the parameters were now)</p>
+        </figcaption>
+</figure>
+
+
+  </article>
+
+  <br/>
+
+  
+  
+</section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    © 2018 · Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

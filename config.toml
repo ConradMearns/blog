@@ -1,0 +1,43 @@
+baseurl = "http://conrads.website/"
+languageCode = "en-us"
+title = "Conrad's Website"
+theme = "Coder"
+publishDir = "docs"
+
+PygmentsCodeFences = true
+# PygmentsUseClasses = true
+PygmentsStyle = "monokai"
+
+
+[params]
+  author = "Conrad Mearns"
+  info = "Student at the University of Idaho"
+  keywords = "conrad, mearns, blog"
+
+  [blackfriday]
+    extensions = ["hardLineBreak"]
+
+[[params.social]]
+  name = "Github"
+  weight = 1
+  url = "https://github.com/Conradmearns"
+
+[[params.social]]
+  name = "PGP"
+  weight = 2
+  url = "https://raw.githubusercontent.com/ConradMearns/website/master/conrad.key"
+
+[[params.social]]
+  name = "Twitter"
+  weight = 3
+  url = "https://twitter.com/conrad_mearns"
+
+[[menu.main]]
+  name = "Blog"
+  weight = 2
+  url = "/posts/"
+
+[[menu.main]]
+  name = "Resume"
+  weight = 1
+  url = "/about/"

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Conrad Mearns">
+    
+    <meta name="keywords" content="conrad, mearns, blog">
+
+    <base href="http://conrads.website/">
+    <title>
+  Raspberry Pi Zero Cluster Storage · Conrad&#39;s Website
+</title>
+
+    <link rel="canonical" href="http://conrads.website/posts/cluster/">
+
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="http://conrads.website/css/style.min.css">
+
+    <link rel="icon" type="image/png" href="http://conrads.website/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://conrads.website/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.73.0" />
+  </head>
+
+  <body>
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="http://conrads.website/">
+      Conrad&#39;s Website
+    </a>
+    
+    <ul class="navigation-list float-right">
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/about/">Resume</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/posts/">Blog</a>
+      </li>
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">Raspberry Pi Zero Cluster Storage</h1>
+      <h2 class="date">November 23, 2018</h2>
+
+      
+    </header>
+
+    <h1 id="physical-build">Physical Build</h1>
+<p>The physical considerations of the project must meet needs of future-proofing, cost, and setup time requirements. The aim of such a project would be to achieve:</p>
+<ul>
+<li>Reliable, RAID-like cloud storage and computing</li>
+<li>Cheap storage</li>
+<li>Expandability</li>
+<li>Intelligent software design</li>
+</ul>
+<h2 id="cluster-hat">Cluster Hat</h2>
+<p>The Cluster Hat is a deivce that connects multiple Raspberry Pi&rsquo;s together rather simply and gracefully. It connects and powers the Zero&rsquo;s mini USB port, and evern includes a software bundle. They have a website too, at <a href="https://clusterhat.com/">clusterhat.com</a></p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Needed</th>
+<th>Cost</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi Zero 1.3</td>
+<td>4</td>
+<td>$5.00</td>
+<td><a href="https://www.adafruit.com/product/2885">Adafruit</a></td>
+</tr>
+<tr>
+<td>Raspbperry Pi 2 B</td>
+<td>1</td>
+<td>$34.95</td>
+<td><a href="https://www.pishop.us/product/raspberry-pi-2-model-b-armv7-with-1g-ram">PiShop</a></td>
+</tr>
+<tr>
+<td>Cluster Hat v2.0</td>
+<td>1</td>
+<td>$34.95</td>
+<td><a href="https://www.pishop.us/product/cluster-hat-v2-0/">PiShop</a></td>
+</tr>
+<tr>
+<td>32 GB SD cards</td>
+<td>5</td>
+<td>$5.99</td>
+<td><a href="https://www.amazon.com/dp/B06XWN9Q99/">Amazon</a></td>
+</tr>
+</tbody>
+</table>
+<p>It&rsquo;s also helpful to break down a couple of totals, to see how the project will affect our wallet&hellip; Luckily, this isn&rsquo;t a project that requires too many parts. In my case, I already had a couple SD cards and Pi&rsquo;s lying around. So I&rsquo;ve broken the cost down accordingly.</p>
+<table>
+<thead>
+<tr>
+<th>Total with B</th>
+<th>Total without B &amp; SD</th>
+<th>Total for minimal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$119.85</td>
+<td>$78.91</td>
+<td>$45.95</td>
+</tr>
+</tbody>
+</table>
+<p>A bonus to this design direction is that the Pi&rsquo;s require no physical modification.</p>
+<h2 id="bad-usb">Bad USB</h2>
+<p>This device comes from <a href="https://www.banggood.com/BadUSB-Zero-Quick-Plug-For-Raspberry-Pi-Zero-v1_3-Zero-W-p-1305226.html">banggood.com</a>, and looks to be a very small DIY USB solder kit to give a Zero USB power and ethernet ability without much other hardware. Naturally then, a USB hub is needed to connect the Pi&rsquo;s to a distributor and power. Due to the orientation of the USB and the Zero boards, a <a href="https://www.amazon.com/USB-Hub-Charging-Individual-Switches/dp/B00VK9C24M/">hub like this is required</a>. A bonus to a setup like this (currently ignoring bandwidth across the hub and to boards still), is that the hub can be readily replaced for more Pi&rsquo;s, and the Pi&rsquo;s themselves can be used for other, BadUSB related projects.</p>
+<table>
+<thead>
+<tr>
+<th>Ports</th>
+<th>Price</th>
+<th>Price per Port</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>$18.99</td>
+<td>$4.75</td>
+<td><a href="https://www.amazon.com/USB-Hub-Charging-Individual-Switches/dp/B00VK9C24M/">Amazon</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>$22.99</td>
+<td>$4.60</td>
+<td><a href="https://www.amazon.com/Anker-5-Port-Charger-PowerPort-iPhone/dp/B00VH8ZW02/">Amazon</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>$39.99</td>
+<td>$4.00</td>
+<td><a href="https://www.amazon.com/AmazonBasics-USB-10-Port-Power-Adapter/dp/B076YN6CSG/">Amazon</a></td>
+</tr>
+</tbody>
+</table>
+<p>If we continue this approximation, and gather that each additional Pi, a micro SD card, and a corresponding USB port slot will cost a total of $16.99. The entry point for this, however, costs $48.99, for the 10 Port hub and a single Zero and SD card. At capacity, the cluster would cost $169.90, but still lacks a distributor and may be bottlenecked over the  USB hub.</p>
+<p>This design may also integrate with the Zerotier Edge better, as it may reduce complexity when adding nodes if an Edge is used as a gateway.</p>
+<h2 id="comparison">Comparison</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Price of Pi&rsquo;s (Max)</th>
+<th>Price of Pi&rsquo;s (Min)</th>
+<th>Cost per GB (Max)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster Hat</td>
+<td>$78.91</td>
+<td>$45.95</td>
+<td>$0.617</td>
+</tr>
+<tr>
+<td>Bad BadUSB</td>
+<td>$169.90</td>
+<td>$48.99</td>
+<td>$0.531</td>
+</tr>
+</tbody>
+</table>
+<p>Where Cost per Gb doesn&rsquo;t include extra overhead. For extra reference, Dropbox will currently charge $8.25/mo for 1TB of data storage. That equates to $0.097 per GB a year. Thus, a raspberry pi solution would pay off in 5.49 to 6.38 years.</p>
+<p>This comparison also relies on using 32GB SD cards, which can easily be upgraded without heavy modification to the system.</p>
+<h1 id="digital-solutions">Digital Solutions</h1>
+<p>Current considerations and ideas</p>
+<ul>
+<li>Drive encryption</li>
+<li>OS</li>
+<li>Policies
+<ul>
+<li>Keep at least 3 copies of a file across nodes</li>
+</ul>
+</li>
+<li>Services
+<ul>
+<li>Plex</li>
+<li>Git / Gitlab</li>
+<li>Node creation</li>
+<li>Password / account management</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+  </article>
+
+  <br/>
+
+  
+  
+</section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    © 2018 · Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
