@@ -36,3 +36,7 @@ PygmentsStyle = "monokai"
   name = "Resume"
   weight = 1
   url = "/about/"
+
+
+[markup.goldmark.renderer]
+unsafe= true
