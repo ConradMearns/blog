@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Conrad&#39;s Website</title>
-    <link>http://conrads.website/</link>
+    <link>https://conrads.website/</link>
     <description>Recent content on Conrad&#39;s Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 23 Nov 2018 23:22:29 -0800</lastBuildDate>
     
-	<atom:link href="http://conrads.website/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://conrads.website/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Raspberry Pi Zero Cluster Storage</title>
-      <link>http://conrads.website/posts/cluster/</link>
+      <link>https://conrads.website/posts/cluster/</link>
       <pubDate>Fri, 23 Nov 2018 23:22:29 -0800</pubDate>
       
-      <guid>http://conrads.website/posts/cluster/</guid>
+      <guid>https://conrads.website/posts/cluster/</guid>
       <description>Physical Build The physical considerations of the project must meet needs of future-proofing, cost, and setup time requirements. The aim of such a project would be to achieve:
  Reliable, RAID-like cloud storage and computing Cheap storage Expandability Intelligent software design  Cluster Hat The Cluster Hat is a deivce that connects multiple Raspberry Pi&amp;rsquo;s together rather simply and gracefully. It connects and powers the Zero&amp;rsquo;s mini USB port, and evern includes a software bundle.</description>
     </item>
     
     <item>
       <title>More Shells</title>
-      <link>http://conrads.website/posts/more-shells/</link>
+      <link>https://conrads.website/posts/more-shells/</link>
       <pubDate>Tue, 13 Nov 2018 09:51:29 -0800</pubDate>
       
-      <guid>http://conrads.website/posts/more-shells/</guid>
+      <guid>https://conrads.website/posts/more-shells/</guid>
       <description>Well I&amp;rsquo;ve been pretty busy recently, as the semester winds down the workload typically ramps up&amp;hellip; So it goes.
 I&amp;rsquo;ve been trying to find the time to write here more, and sometimes I have. It&amp;rsquo;s just that so many of my words end up being for me and me alone, and because of that this place continues to look empty&amp;hellip;
 Well, to help fight the emptiness, here are some shell renders I did.</description>
@@ -34,19 +34,19 @@ Well, to help fight the emptiness, here are some shell renders I did.</descripti
     
     <item>
       <title>Resume as of November 2018</title>
-      <link>http://conrads.website/about/</link>
+      <link>https://conrads.website/about/</link>
       <pubDate>Tue, 30 Oct 2018 11:54:43 -0700</pubDate>
       
-      <guid>http://conrads.website/about/</guid>
+      <guid>https://conrads.website/about/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mathematical Seashells</title>
-      <link>http://conrads.website/posts/seashells/</link>
+      <link>https://conrads.website/posts/seashells/</link>
       <pubDate>Wed, 01 Aug 2018 16:17:00 +0000</pubDate>
       
-      <guid>http://conrads.website/posts/seashells/</guid>
+      <guid>https://conrads.website/posts/seashells/</guid>
       <description>In Seashells: The Plainness and Beauty of their Mathematical Description, Jorge Picado describes the mathematics necessary to simulate the shape of a multitude of different seashells. In this post, I wanted to share some renders I created while implementing Picado&amp;rsquo;s math into SciView and how the fourteen parameters function.
 Defining the Spiral The parameters D, A, alpha and beta allow us to construct any variety of spiral we want.
 D specifies the chirality of the seashell - which direction it spirals.</description>
