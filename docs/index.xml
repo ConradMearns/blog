@@ -6,10 +6,21 @@
     <description>Recent content on Conrad&#39;s Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Nov 2018 23:22:29 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://conrads.website/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>On Blogging and What&#39;s Next</title>
+      <link>https://conrads.website/posts/on-blogging/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://conrads.website/posts/on-blogging/</guid>
+      <description>(I&amp;rsquo;m not a very good blogger.)
+In lieu of blogging, I have been researching and soul searching for new and &amp;ldquo;better&amp;rdquo; ways of sharing personal information like images and my thoughts. I like writing but I want more control over my potential audience. Technical posts and descriptions of life events seem to be fine concepts for a blog, but I write about so much more than these topics.
+When I first deployed this website, I used Hugo (link in the footer) and a few bash scripts that encrypted my documents with a PGP key.</description>
+    </item>
     
     <item>
       <title>Raspberry Pi Zero Cluster Storage</title>
