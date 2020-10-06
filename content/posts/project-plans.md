@@ -14,7 +14,6 @@ As briefly described in my previous post, I need to get my projects organized. T
 
 I know that I'm missing some items here, but my objective is just to get these posted so that I can visualize and identify what I would like to do first.
 
-
 # Needing Definitions and Deadlines
 
 - PWA Calendar/ToDo/scheduler
@@ -65,4 +64,9 @@ I know that I'm missing some items here, but my objective is just to get these p
 - Determine if I can optimize battery life on my laptop
 - Save working applications for later
   - Fix media buttons on laptop
+
+Provide a fix for
+```
+warning: ignoring the user-specified setting 'experimental-features', because it is a restricted setting and you are not a trusted user
+```
 
