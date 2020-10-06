@@ -5,4 +5,12 @@ stdenv.mkDerivation rec {
   buildInputs = [
     hugo
   ];
+  shellHook = 
+    "
+    clear
+    echo 'Welcome back! Here are your drafts:'
+    echo '-----------------------------------'
+    hugo list drafts
+    "
+  ;
 }

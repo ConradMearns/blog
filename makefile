@@ -1,4 +1,4 @@
-default:
+deploy:
 	git pull
 	hugo
 	git add .
