@@ -37,6 +37,5 @@ PygmentsStyle = "monokai"
   weight = 1
   url = "/about/"
 
-
 [markup.goldmark.renderer]
 unsafe= true
