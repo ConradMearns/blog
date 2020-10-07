@@ -33,6 +33,11 @@
   </url>
   
   <url>
+    <loc>https://conrads.website/demos/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://conrads.website/categories/</loc>
   </url>
   
