@@ -1,5 +1,5 @@
 +++ 
-draft = true
+draft = false
 date = "2020-10-05T08:54:00"
 title = "Project Plans"
 slug = "" 
@@ -14,10 +14,10 @@ As briefly described in my previous post, I need to get my projects organized. T
 
 I know that I'm missing some items here, but my objective is just to get these posted so that I can visualize and identify what I would like to do first.
 
+I'd like to prioritize anything that I can do with Racket, because I'd like to learn more of the language in time for RacketCon.
+
 # In Progress
 
-- Hosting p5js Demos
-  - Hosting for simulation "paper"
 
 - Calendar/ToDo/scheduler
   - I want a scheduling system that I can directly control the invasiveness of.
@@ -25,6 +25,10 @@ I know that I'm missing some items here, but my objective is just to get these p
     - How many tasks blocks are available today?
     - When will I be able to work on task X next? (If Task X takes Y task blocks to complete on avg)
     - What is the most common 'overhead' or context-switch time required for a given task?
+
+- Hosting p5js Demos
+  - Hosting for simulation "paper"
+
 
 # Needing Definitions and Deadlines
 

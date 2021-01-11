@@ -6,10 +6,47 @@
     <description>Recent content in Posts on Conrad&#39;s Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://conrads.website/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Time</title>
+      <link>https://conrads.website/posts/time/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://conrads.website/posts/time/</guid>
+      <description>There&amp;rsquo;s a lot I want to talk about, but I know that I&amp;rsquo;m just creating more work for myself down the road.
+I have made a few of recordings of Quantity vs Quality and on 20/80 happiness-scheduling, but I need to start writing these things out.
+Upon opening this blog, I found a a nice surprise waiting for me.
+I finally got around to figuring out how NixOS aliasing works, and added an alias for nix-shell to ns.</description>
+    </item>
+    
+    <item>
+      <title>Playing with Consensus</title>
+      <link>https://conrads.website/posts/js-test/</link>
+      <pubDate>Wed, 07 Oct 2020 12:10:50 +0000</pubDate>
+      
+      <guid>https://conrads.website/posts/js-test/</guid>
+      <description>This is largely an exercise in using LaTex, Pandoc, and p5js to try and describe a problem and potential solutions.
+  Problem with election process for managing service knowledge in a cluster
+  Explain SWIM, Serf, PAXOS
+  Explain new purpose of adapting experiment projects into blog components
+  HTML and PDF views?
+ I need to break the PDF apart so that graphs, LaTeX, and Tikz drawing can be added to the Hugo doc.</description>
+    </item>
+    
+    <item>
+      <title>Project Plans</title>
+      <link>https://conrads.website/posts/project-plans/</link>
+      <pubDate>Mon, 05 Oct 2020 08:54:00 +0000</pubDate>
+      
+      <guid>https://conrads.website/posts/project-plans/</guid>
+      <description>As briefly described in my previous post, I need to get my projects organized. This page &amp;lsquo;might&amp;rsquo; be a living page and get updated as needed.
+(Or, I may simply copy and paste it whenever I make changes. I&amp;rsquo;m not sure which yet.)
+I know that I&amp;rsquo;m missing some items here, but my objective is just to get these posted so that I can visualize and identify what I would like to do first.</description>
+    </item>
     
     <item>
       <title>On Blogging and What&#39;s Next</title>

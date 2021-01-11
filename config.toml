@@ -11,7 +11,7 @@ PygmentsStyle = "monokai"
 
 [params]
   author = "Conrad Mearns"
-  info = "Student at the University of Idaho"
+  info = "Bachelor of Computer Science"
   keywords = "conrad, mearns, blog"
 
   [blackfriday]
@@ -28,7 +28,7 @@ PygmentsStyle = "monokai"
   url = "https://twitter.com/conrad_mearns"
 
 [[menu.main]]
-  name = "Blog"
+  name = "Scraps"
   weight = 2
   url = "/posts/"
 
@@ -36,6 +36,11 @@ PygmentsStyle = "monokai"
   name = "Resume"
   weight = 1
   url = "/about/"
+
+[[menu.main]]
+  name = "List"
+  weight = 5
+  url = "/list/"
 
 [markup.goldmark.renderer]
 unsafe= true

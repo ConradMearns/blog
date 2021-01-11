@@ -1,5 +1,5 @@
-const startingBoids = 2;
-const requiredServices = 1;
+const startingBoids = 10;
+const requiredServices = 3;
 
 var boids = [];
 var msgs = [];
