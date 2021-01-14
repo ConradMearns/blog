@@ -60,6 +60,17 @@ When I first deployed this website, I used Hugo (link in the footer) and a few b
     </item>
     
     <item>
+      <title>Accuracy x Time</title>
+      <link>https://conrads.website/posts/accuracy-x-time/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://conrads.website/posts/accuracy-x-time/</guid>
+      <description>Freewriting for 20minutes - mistrakes galore!
+ One of my more recent goals is to abandon the idea of &amp;lsquo;projects&amp;rsquo; as a categorical method for organizing tasks and time. There are a few ideas that all relate to this;
+ Projects are too goal oriented, they cause us to lean into analysis paralysis and we get overburdened by perfectionism. &amp;lsquo;My Project is too personal to take shortcuts! That&amp;rsquo;s not who I am!</description>
+    </item>
+    
+    <item>
       <title>Raspberry Pi Zero Cluster Storage</title>
       <link>https://conrads.website/posts/cluster/</link>
       <pubDate>Fri, 23 Nov 2018 23:22:29 -0800</pubDate>

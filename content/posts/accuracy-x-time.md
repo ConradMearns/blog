@@ -1,5 +1,5 @@
 +++ 
-draft = true
+draft = false
 date = "2020-01-14T00:00:00-00:00"
 title = "Accuracy x Time"
 slug = "" 
