@@ -1,6 +1,6 @@
 +++ 
 draft = false
-date = "2020-01-14T00:00:00-00:00"
+date = "2021-01-14T00:00:00-00:00"
 title = "Accuracy x Time"
 slug = "" 
 tags = []

@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Conrad&#39;s Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://conrads.website/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Accuracy x Time</title>
+      <link>https://conrads.website/posts/accuracy-x-time/</link>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://conrads.website/posts/accuracy-x-time/</guid>
+      <description>Freewriting for 20minutes - mistrakes galore!
+ One of my more recent goals is to abandon the idea of &amp;lsquo;projects&amp;rsquo; as a categorical method for organizing tasks and time. There are a few ideas that all relate to this;
+ Projects are too goal oriented, they cause us to lean into analysis paralysis and we get overburdened by perfectionism. &amp;lsquo;My Project is too personal to take shortcuts! That&amp;rsquo;s not who I am!</description>
+    </item>
     
     <item>
       <title>Time</title>
@@ -57,17 +68,6 @@ I know that I&amp;rsquo;m missing some items here, but my objective is just to g
       <description>(I&amp;rsquo;m not a very good blogger.)
 In lieu of blogging, I have been researching and soul searching for new and &amp;ldquo;better&amp;rdquo; ways of sharing personal information like images and my thoughts. I like writing but I want more control over my potential audience. Technical posts and descriptions of life events seem to be fine concepts for a blog, but I write about so much more than these topics.
 When I first deployed this website, I used Hugo (link in the footer) and a few bash scripts that encrypted my documents with a PGP key.</description>
-    </item>
-    
-    <item>
-      <title>Accuracy x Time</title>
-      <link>https://conrads.website/posts/accuracy-x-time/</link>
-      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://conrads.website/posts/accuracy-x-time/</guid>
-      <description>Freewriting for 20minutes - mistrakes galore!
- One of my more recent goals is to abandon the idea of &amp;lsquo;projects&amp;rsquo; as a categorical method for organizing tasks and time. There are a few ideas that all relate to this;
- Projects are too goal oriented, they cause us to lean into analysis paralysis and we get overburdened by perfectionism. &amp;lsquo;My Project is too personal to take shortcuts! That&amp;rsquo;s not who I am!</description>
     </item>
     
     <item>
