@@ -38,9 +38,9 @@ PygmentsStyle = "monokai"
   url = "/about/"
 
 [[menu.main]]
-  name = "List"
-  weight = 5
-  url = "/list/"
+  name = "Breadboard"
+  weight = 7
+  url = "https://app.conrads.website"
 
 [markup.goldmark.renderer]
 unsafe= true
