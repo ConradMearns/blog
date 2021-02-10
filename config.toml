@@ -42,5 +42,10 @@ PygmentsStyle = "monokai"
   weight = 7
   url = "https://app.conrads.website"
 
+[[menu.main]]
+  name = "Links"
+  weight = 9
+  url = "/links/"
+
 [markup.goldmark.renderer]
 unsafe= true
