@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Conrad Mearns">
+    
+    <meta name="keywords" content="conrad, mearns, blog">
+
+    <base href="https://conrads.website/">
+    <title>
+  &#39;Nixing&#39; Racket with Jupyter · Conrad&#39;s Website
+</title>
+
+    <link rel="canonical" href="https://conrads.website/posts/nixing-racket-with-jupyter/">
+
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="https://conrads.website/css/style.min.css">
+
+    <link rel="icon" type="image/png" href="https://conrads.website/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://conrads.website/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.73.0" />
+  </head>
+
+  <body>
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://conrads.website/">
+      Conrad&#39;s Website
+    </a>
+    
+    <ul class="navigation-list float-right">
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/about/">Resume</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/posts/">Scraps</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://app.conrads.website">Breadboard</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/links/">Links</a>
+      </li>
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">&#39;Nixing&#39; Racket with Jupyter</h1>
+      <h2 class="date">February 20, 2021</h2>
+
+      
+    </header>
+
+    <p>Notes and commands on installing the Racket Jupyter Kernel on Nixos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nix-shell -p jupyter zeromq racket
+raco pkg install iracket
+raco iracket install
+
+export LD_LIBRARY_PATH<span style="color:#f92672">=</span>/nix/store/w1xjxz84cy59zhijz4w18m3a6kc65lk8-zeromq-4.3.2/lib/
+</code></pre></div><p><a href="https://discourse.nixos.org/t/what-is-the-nix-way-to-specify-ld-library-path/6407/2">https://discourse.nixos.org/t/what-is-the-nix-way-to-specify-ld-library-path/6407/2</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export LD_LIBRARY_PATH<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>nix eval --raw nixpkgs.zlib<span style="color:#66d9ef">)</span>/lib:$LD_LIBRARY_PATH
+</code></pre></div><p>seems not to work anymore&hellip; Not sure why</p>
+<p>In any case, it would be good to have a shell.nix for this.</p>
+<p>I don&rsquo;t know how to correctly add raco packages, and I don&rsquo;t care at the moment.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ pkgs <span style="color:#f92672">?</span> <span style="color:#f92672">import</span> <span style="color:#e6db74">&lt;nixpkgs&gt;</span> {} }:
+  pkgs<span style="color:#f92672">.</span>mkShell {
+    nativeBuildInputs <span style="color:#f92672">=</span> [
+      pkgs<span style="color:#f92672">.</span>racket
+      pkgs<span style="color:#f92672">.</span>jupyter
+      pkgs<span style="color:#f92672">.</span>zeromq
+    ];
+
+  shellHook <span style="color:#f92672">=</span>
+  <span style="color:#e6db74">&#39;&#39;
+</span><span style="color:#e6db74">  export LD_LIBRARY_PATH=</span><span style="color:#e6db74">${</span>pkgs<span style="color:#f92672">.</span>zeromq<span style="color:#e6db74">}</span><span style="color:#e6db74">/lib/
+</span><span style="color:#e6db74">  
+</span><span style="color:#e6db74">  raco pkg install iracket
+</span><span style="color:#e6db74">  raco iracket install
+</span><span style="color:#e6db74">  &#39;&#39;</span>;
+
+}
+</code></pre></div>
+  </article>
+
+  <br/>
+
+  
+  
+</section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    © 2021 · Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
