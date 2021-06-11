@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Conrad Mearns">
+    
+    <meta name="keywords" content="conrad, mearns, blog">
+
+    <base href="https://conrads.website/">
+    <title>
+  Jupyter Test · Conrad&#39;s Website
+</title>
+
+    <link rel="canonical" href="https://conrads.website/posts/jupyter-test/">
+
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="https://conrads.website/css/style.min.css">
+
+    <link rel="icon" type="image/png" href="https://conrads.website/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://conrads.website/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.82.0" />
+  </head>
+
+  <body>
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://conrads.website/">
+      Conrad&#39;s Website
+    </a>
+    
+    <ul class="navigation-list float-right">
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/about/">Resume</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/posts/">Scraps</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://app.conrads.website">Breadboard</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/links/">Links</a>
+      </li>
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">Jupyter Test</h1>
+      <h2 class="date">June 10, 2021</h2>
+
+      
+    </header>
+
+    <p>This is just a test for using Jupyter Notebooks as an inbetween format for working and blogging at the same time. I&rsquo;d really like to write notes continuously, but I&rsquo;d also like to be working. If I work within a Git project, I start to lose the ability to easily write about what I&rsquo;m doing.</p>
+<p>Even if I can&rsquo;t fully describe my code, I can at least break it into smaller pieces. Each cell can represent changes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Racket" data-lang="Racket">(print <span style="color:#e6db74">&#34;hello!&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><pre><code>&quot;hello!&quot;
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Racket" data-lang="Racket">(<span style="color:#66d9ef">define</span> x <span style="color:#ae81ff">3</span>)
+x<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p><code>3</code></p>
+<p>I have already forgetten Racket haha&hellip; how do I define a function</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Racket" data-lang="Racket">(<span style="color:#66d9ef">define</span> (f y) (+ x y))
+(f <span style="color:#ae81ff">7</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p><code>10</code></p>
+<p>I&rsquo;ve made a function, but I don&rsquo;t like the behavior. Instead of editting the cell, I can continue the story and overwrite the definition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Racket" data-lang="Racket">(<span style="color:#66d9ef">define</span> (f y) (modulo (+ x y) y))
+(f <span style="color:#ae81ff">7</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p><code>3</code></p>
+<p>Assuming I can export this to Hugo easily, then I can work without as much fear of forgetting my work&hellip; I just need to be able to see everything in front of me - without that, I see nothing and do nothing.</p>
+
+  </article>
+
+  <br/>
+
+  
+  
+</section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    © 2021 · Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

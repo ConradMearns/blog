@@ -1,96 +1,61 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>https://conrads.website/posts/nixing-racket-with-jupyter/</loc>
-    <lastmod>2021-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
   <url>
     <loc>https://conrads.website/</loc>
-    <lastmod>2021-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://conrads.website/posts/jupyter-test/</loc>
+    <lastmod>2021-06-10T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://conrads.website/posts/</loc>
+    <lastmod>2021-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://conrads.website/posts/nixing-racket-with-jupyter/</loc>
     <lastmod>2021-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/motivation/</loc>
     <lastmod>2021-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/engine/</loc>
     <lastmod>2021-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/lull/</loc>
     <lastmod>2021-01-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/accuracy-x-time/</loc>
     <lastmod>2021-01-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/list/</loc>
     <lastmod>2021-01-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/time/</loc>
     <lastmod>2021-01-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/js-test/</loc>
     <lastmod>2020-10-07T12:10:50+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/project-plans/</loc>
     <lastmod>2020-10-05T08:54:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/on-blogging/</loc>
     <lastmod>2020-09-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/cluster/</loc>
     <lastmod>2018-11-23T23:22:29-08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/more-shells/</loc>
     <lastmod>2018-11-13T09:51:29-08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/posts/seashells/</loc>
     <lastmod>2018-08-01T16:17:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/links/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://conrads.website/tags/</loc>
   </url>
-  
 </urlset>

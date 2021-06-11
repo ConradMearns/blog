@@ -6,10 +6,16 @@
     <description>Recent content in Posts on Conrad&#39;s Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Feb 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://conrads.website/posts/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 10 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://conrads.website/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jupyter Test</title>
+      <link>https://conrads.website/posts/jupyter-test/</link>
+      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://conrads.website/posts/jupyter-test/</guid>
+      <description>This is just a test for using Jupyter Notebooks as an inbetween format for working and blogging at the same time. I&amp;rsquo;d really like to write notes continuously, but I&amp;rsquo;d also like to be working. If I work within a Git project, I start to lose the ability to easily write about what I&amp;rsquo;m doing.
+Even if I can&amp;rsquo;t fully describe my code, I can at least break it into smaller pieces.</description>
+    </item>
     
     <item>
       <title>&#39;Nixing&#39; Racket with Jupyter</title>
@@ -46,7 +52,7 @@ that may motivate and inspire my future selves.
 I am not sure that I can
 so I will aim to motivate my past selves - the only ones I have known.
  &amp;ldquo;What is the purpose of life?&amp;rdquo; is, as we know, too vague a question. It&amp;rsquo;s only surpassed the supreme question (&amp;ldquo;Why?&amp;quot;) and offers very little motion into a definitive answer.
-The vision that we once saw, was reminicent of Borges&amp;rsquo; Librarians - though they were faceless and did not wander past infinite shelves of books.</description>
+The vision that we once saw, was reminicent of Borges&#39; Librarians - though they were faceless and did not wander past infinite shelves of books.</description>
     </item>
     
     <item>
