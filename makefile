@@ -32,5 +32,6 @@ notebook:
 
 jupyter-convert:
 	jupyter nbconvert notebooks/*.ipynb --to markdown
+	# echo "+++\ndraft = true\ntitle = "<TITLE>"\ndate = "2021-06-10T00:00:00-00:00"\nslug = ""\n+++"
 
 # cat notebooks/JupyterTest.md >> content/posts/jupyter-test.md

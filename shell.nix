@@ -1,5 +1,7 @@
 # nix-env -if https://github.com/DavHau/mach-nix/tarball/3.3.0 -A mach-nix
 # mach-nix env ./env -r requirements.txt
+# libagg-dev
+# libpotrace-dev
 
 let 
   pkgs = import <nixpkgs> {};
@@ -10,39 +12,40 @@ pkgs.mkShell {
   name = "env";
   buildInputs = with pkgs; [
     hugo
-    python39
+    python38
+    python38Packages.pip
+    python38Packages.bash_kernel
+    python38Packages.numpy
+    python38Packages.pandas
+    python38Packages.matplotlib
+    python38Packages.fuzzywuzzy
+    python38Packages.python-Levenshtein
     poetry
-
-    python39Packages.bash_kernel    
-    python39Packages.numpy
-    # python39Packages.jupytext
-
     racket
     jupyter
     zeromq
   
   ];
   
-  # installPhase = "python -m bash_kernel.install";
-
-  shellHook = 
-    "
-    # Make sure zeromq is setup for Racket in Jupyter
-    export LD_LIBRARY_PATH=${pkgs.zeromq}/lib/
-
-    python -m bash_kernel.install
-
-    # Isn't nix great??
+  installPhase = ''
+    python3 -m bash_kernel.install
+    
     raco pkg install iracket
     raco iracket install
     raco pkg install racket-langserver
 
+    # pip install git+https://github.com/bsdz/remarkable-layers.git#master
+  '';
 
+  shellHook = 
+    ''
+    # Make sure zeromq is setup for Racket in Jupyter
+    export LD_LIBRARY_PATH=${pkgs.zeromq}/lib/
 
-    clear
+    # clear
     echo 'Welcome back! Here are your drafts:'
     echo '-----------------------------------'
     hugo list drafts
-    "
+    ''
   ;
 }

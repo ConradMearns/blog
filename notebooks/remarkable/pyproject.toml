@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "remarkable"
+version = "0.1.0"
+description = ""
+authors = ["Conrad Mearns <conradmearns@pm.me>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+jupyter = "^1.0.0"
+rmlines = {git = "https://github.com/bsdz/remarkable-layers.git"}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
