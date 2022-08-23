@@ -9,38 +9,32 @@ import ListStatic from '../components/ListStatic.astro';
 
 
 
-<Layout title="Welcome to Astro.">
+<Layout title="con's site :)">
 	<main>
-		<h1>Built with <span class="text-gradient">Astro</span></h1>
+		<h1>Built with 
+			<span class="text-gradient">Astro</span>
+		</h1>
+		<h2>我在学汉语</h2>
 
 		<SvelteTest client:load/>
 		
 		<ListStatic></ListStatic>
-		
-		<p class="instructions">
-			Check out the <code>src/pages</code> directory to get started.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
 
-		
-		
-		<ul role="list" class="link-card-grid">
-			<Card
-			href="https://docs.astro.build/"
-			title="Documentation"
-			body="Learn how Astro works and explore the official API docs."
-			/>
-		</ul>
 	</main>
 </Layout>
 
 <style>
+	/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap'); */
+
 	:root {
 		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
 	}
 
 	h1 {
+		text-align: center;
 		margin: 2rem 0;
+		/* font-family: 'Playfair Display';
+		font-weight: 600; */
 	}
 
 	main {

@@ -1,0 +1,9 @@
+---
+const pages = await Astro.glob('./**/*.astro');
+---
+
+{pages.map((page) => (
+    <li>
+        <a href={page.url}>{page.url}</a>
+    </li>
+))}
