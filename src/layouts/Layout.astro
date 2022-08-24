@@ -1,5 +1,6 @@
 ---
 import "@fontsource/raleway"
+import "@fontsource/noto-sans-sc"
 
 
 export interface Props {
@@ -64,30 +65,66 @@ const { title } = Astro.props as Props;
 <style>
 	
 	:root {
+		/* lighten and darken knobs */
+		--lighten: 10%;
+		--darken: 10%;
+
+		/* Primary color decomposed and composed */
+		--color-primary-h: 42;
+		--color-primary-s: 100%;
+		--color-primary-l: 80%;
+
+		--color-secondary-h: 10;
+		--color-secondary-s: 100%;
+		--color-secondary-l: 80%;
+		
+		--color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
+		--color-primary--light: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + var(--lighten)));
+		--color-primary--dark:  hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) - var(--darken)));
+		--color-primary--complement:  hsl(calc(var(--color-primary-h) + 180), var(--color-primary-s), var(--color-primary-l));
+		--color-primary--triad-1:  hsl(calc(var(--color-primary-h) + 120), var(--color-primary-s), var(--color-primary-l));
+		--color-primary--triad-2:  hsl(calc(var(--color-primary-h) + 240), var(--color-primary-s), var(--color-primary-l));
+		
+		--color-secondary: hsl(var(--color-secondary-h), var(--color-secondary-s), var(--color-secondary-l));
+		--color-secondary--light: hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) + var(--lighten)));
+		--color-secondary--dark:  hsl(var(--color-secondary-h), var(--color-secondary-s), calc(var(--color-secondary-l) - var(--darken)));
+		--color-secondary--complement:  hsl(calc(var(--color-secondary-h) + 180), var(--color-secondary-s), var(--color-secondary-l));
+		--color-secondary--triad-1:  hsl(calc(var(--color-secondary-h) + 120), var(--color-secondary-s), var(--color-secondary-l));
+		--color-secondary--triad-2:  hsl(calc(var(--color-secondary-h) + 240), var(--color-secondary-s), var(--color-secondary-l));
+  
+
+
+
 		/* --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem); */
 		--font-size-xl: 3rem;
 		--color-text: hsl(0, 0%, 0%);
-		--color-bg: hsl(42, 100%, 80%);
+		--color-bg: var(--color-primary--light);
+		--color-bg-darker: white;
+
+		--color-nav-link: var(--color-text);
 		/* --color-bg-shadow: hsl(42, 55%, 58%); */
 		/* --color-border: hsl(17, 24%, 90%); */
 	}
 	
-	@font-face {
-		font-family: "Raleway";
-	}
+	/* @font-face {
+	} */
 	
-
+	
 	html {
-		font-family: "Raleway", sans-serif;
-		background-color: var(--color-bg);
+		height: 100%;
+		font-family: "Raleway", "Noto Sans SC", sans-serif;
+		font-weight: 300;
+		/* background-image: linear-gradient(
+		42deg,
+		var(--color-bg-darker) 0%,
+		var(--color-bg) 80%
+		); */
 		color: var(--color-text);
 	}
 
 	:global(h1) {
 		font-size: var(--font-size-xl);
 		/* text-shadow: 6px 3px 6px var(--color-bg-shadow); */
-		text-shadow: 0 15px 15px rgba(0,0,0,.2);
-		font-weight: 700;
-		line-height: 0;
+		font-weight: 500;
 	}
 </style>

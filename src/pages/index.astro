@@ -1,35 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ColorPalette from './ColorPalette.astro';
 ---
 
 <Layout title="con's site :)">
 	<main>
-        <h3>Hi, I'm</h3>
-        <h1>Conrad</h1>
-        <h2>a Data Engineer</h2>
+        <section class="title-card">
+            <h3>Hi, I'm</h3>
+            <h1>Conrad <span class="less-emphasis">Mearns</span></h1>
+            <h2>Data Engineer</h2>
+            <h3>Pacific Northwest National Laboratory</h3>
+        </section>
         
         <br />
-<pre>
-## Bachelor of Computer Science 
-- University of Idaho 2020
-
-## Data Engineer @ PNNL
-- Embedded C
-- AWS DevOps
-
-## 在学汉语
-[Github](https://github.com/ConradMearns)
-[Twitter](https://twitter.com/conrad_mearns/)
-</pre>
+        <br />
+        <h2><a href="#">Latest Ramblings</a></h2>
+        <h2><a href="#">Content Map</a></h2>
+        <h2><a href="#">Curriculum Vitae</a></h2>
+        <h2><a href="#">Github</a></h2>
+        <h2><a href="#">Twitter</a></h2>
+        <h2><a href="#">在学汉语</a></h2>
+        <br />
         
+        <!-- <ColorPalette /> -->
+
 	</main>
 </Layout>
 
 
 <style>
     main {
-        position: absolute;
-        left: 10%;
-        top: 3rem;
+        margin: 10%;
     }
+
+    a {
+        color: var(--color-nav-link);
+        text-decoration: none;
+    }
+    a::before {
+        content: "[ ";
+    }
+    a::after {
+        content: " ]";
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    section.title-card * {
+		margin: 0;
+    }
+
+    .less-emphasis {
+        color: rgba(0, 0, 0, 0.7);
+    }
+    h1 {
+		text-shadow: 0 3px 10px rgba(0,0,0,.15);
+    }
+
 </style>

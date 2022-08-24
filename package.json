@@ -17,6 +17,7 @@
     "twemoji-emojis": "^13.1.0"
   },
   "dependencies": {
+    "@fontsource/noto-sans-sc": "^4.5.11",
     "@fontsource/raleway": "^4.5.10"
   }
 }
