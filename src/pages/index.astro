@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ColorPalette from './ColorPalette.astro';
+
+const utc = new Date().toLocaleString()
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 ---
 
 <Layout title="con's site :)">
@@ -16,11 +19,15 @@ import ColorPalette from './ColorPalette.astro';
         <h2><a href="#under-construction---sorry!">Latest Ramblings</a></h2>
         <h2><a href="#under-construction---sorry!">Content Map</a></h2>
         <h2><a href="#under-construction---sorry!">Curriculum Vitae</a></h2>
-        <h2><a href="https://github.com/ConradMearns">Github</a></h2>
         <h2><a href="https://twitter.com/conrad_mearns">Twitter</a></h2>
-        <br />
-        
-        <!-- <ColorPalette /> -->
+        <h2><a href="https://github.com/ConradMearns">Github</a></h2>
+
+        <footer>
+            <ColorPalette />
+            <p><a href="https://github.com/ConradMearns/blog">❤</a></p>
+            <p>{utc} - {timezone}</p>
+        </footer>
+
 
 	</main>
 </Layout>
@@ -31,9 +38,11 @@ import ColorPalette from './ColorPalette.astro';
         margin: 10%;
     }
 
-    a {
-        /* font-size: 10vw; */
+    h2 > a {
         font-size: min(8vw, 2rem);
+    }
+
+    a {
         color: var(--color-nav-link);
         text-decoration: none;
     }
@@ -56,6 +65,16 @@ import ColorPalette from './ColorPalette.astro';
     }
     h1 {
 		text-shadow: 0 3px 10px rgba(0,0,0,.15);
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.7rem;
+        line-height: 1em;
     }
 
 </style>
