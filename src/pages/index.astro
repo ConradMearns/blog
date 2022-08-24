@@ -1,89 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-
-import SvelteTest from '../components/SvelteTest.svelte';
-import ListStatic from '../components/ListStatic.astro';
 ---
-
-
-
 
 <Layout title="con's site :)">
 	<main>
-		<h1>Built with 
-			<span class="text-gradient">Astro</span>
-		</h1>
-		<h2>我在学汉语</h2>
+        <h3>Hi, I'm</h3>
+        <h1>Conrad</h1>
+        <h2>a Data Engineer</h2>
+        
+        <br />
+<pre>
+## Bachelor of Computer Science 
+- University of Idaho 2020
 
-		<SvelteTest client:load/>
-		
-		<ListStatic></ListStatic>
+## Data Engineer @ PNNL
+- Embedded C
+- AWS DevOps
 
+## 在学汉语
+[Github](https://github.com/ConradMearns)
+[Twitter](https://twitter.com/conrad_mearns/)
+</pre>
+        
 	</main>
 </Layout>
 
+
 <style>
-	/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap'); */
-
-	:root {
-		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
-	}
-
-	h1 {
-		text-align: center;
-		margin: 2rem 0;
-		/* font-family: 'Playfair Display';
-		font-weight: 600; */
-	}
-
-	main {
-		margin: auto;
-		padding: 1em;
-		max-width: 60ch;
-	}
-
-	.text-gradient {
-		font-weight: 900;
-		background-image: var(--astro-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 100% 200%;
-		background-position-y: 100%;
-		border-radius: 0.4rem;
-		animation: pulse 4s ease-in-out infinite;
-	}
-
-	@keyframes pulse {
-		0%,
-		100% {
-			background-position-y: 0%;
-		}
-		50% {
-			background-position-y: 80%;
-		}
-	}
-
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		background: #4f39fa;
-		padding: 1rem;
-		border-radius: 0.4rem;
-		color: var(--color-bg);
-	}
-
-	.instructions code {
-		font-size: 0.875em;
-		border: 0.1em solid var(--color-border);
-		border-radius: 4px;
-		padding: 0.15em 0.25em;
-	}
-
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+    main {
+        position: absolute;
+        left: 10%;
+        top: 3rem;
+    }
 </style>
