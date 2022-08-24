@@ -1,9 +1,7 @@
 https://twemoji.twitter.com/
-
 1f40c.svg
 
-pwa-asset-generator
+npm i -g pwa-asset-generator
 
-
-
-pwa-asset-generator .\1f40c.svg .\public\icons -m .\public\manifest.json -f -o false
+touch ADD_TO_INDEX.html
+pwa-asset-generator ./node_modules/twemoji-emojis/vendor/svg/1f40c.svg ./public/icons -m ./public/manifest.json -f -o false -i ADD_TO_INDEX.html
