@@ -14,6 +14,9 @@
     "@astrojs/svelte": "^1.0.0",
     "astro": "^1.0.6",
     "svelte": "^3.49.0",
-    "twemoji-emojis": "^14.1.0"
+    "twemoji-emojis": "^13.1.0"
+  },
+  "dependencies": {
+    "@fontsource/raleway": "^4.5.10"
   }
 }
