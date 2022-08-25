@@ -1,6 +1,10 @@
 ---
 const pages = await Astro.glob('./**/*.astro');
+
+import { Debug } from 'astro/components'
 ---
+
+<!-- <Debug {BreadboardIndex} /> -->
 
 {pages.map((page) => (
     <li>
