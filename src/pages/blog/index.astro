@@ -1,0 +1,58 @@
+---
+import Layout from '@layouts/Layout-margin.astro';
+
+interface BlogPage {
+  title: string;
+  date: string;
+}
+
+const pages = await Astro.glob<BlogPage>('./notes/*.md').then((x)=>x.sort((b, a)=> (('' + a.frontmatter.date).localeCompare(b.frontmatter.date) )));
+---
+
+<Layout title="Latest Ramblings">
+    
+    <h1>
+        Latest Ramblings
+    </h1>
+
+    <section>
+        <p>These aren't populated automatically yet, but I'm working on it :)</p>
+        <p>🐌</p>
+    </section>
+
+    {pages.map((page) => (
+        <h2>
+            {page.frontmatter.date}
+            <a href={page.url}>{page.frontmatter.title}</a>
+        </h2>
+    ))}
+
+</Layout>
+
+
+<style>
+    section {
+        background-color: aliceblue;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    h2 > a {
+        font-size: min(8vw, 2rem);
+    }
+
+    a {
+        color: var(--color-nav-link);
+        text-decoration: none;
+    }
+    a::before {
+        content: "[ ";
+    }
+    a::after {
+        content: " ]";
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+</style>
