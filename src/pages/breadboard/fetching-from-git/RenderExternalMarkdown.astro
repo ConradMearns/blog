@@ -1,0 +1,29 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Markdown from '@astrojs/markdown-component';
+import { Debug } from "astro/components";
+import ColorPalette from "@components/ColorPalette.astro";
+
+
+
+const response = await fetch('https://raw.githubusercontent.com/ConradMearns/immanent/main/Immanent%20Test.md');
+const post = await response.text();
+
+---
+
+
+<Layout title="ddd">
+<Markdown>
+{post}
+
+---
+
+<ColorPalette />
+
+## Notes
+- github static updates very slowly
+- frontmatter doesn't work by default
+
+</Markdown>
+</Layout>
+

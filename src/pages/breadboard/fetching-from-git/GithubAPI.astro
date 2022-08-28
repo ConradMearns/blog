@@ -1,0 +1,25 @@
+---
+const token = ''
+
+const response = await fetch('https://api.github.com/repos/ConradMearns/blog/contents/src/pages/blog/', {
+    headers: {
+        'Authorization': 'GITHUB_TOKEN ' + token
+    }
+})
+const contents = await response.json();
+
+interface Post {
+    download_url: string;
+    name: string;
+    type: "file" | "folder";
+}
+---
+
+
+{contents.map((post: Post) => 
+    <li>
+        <a href={post.download_url}>{post.name}</a>
+    </li>
+)}
+
+<!-- <Debug {contents} /> -->
