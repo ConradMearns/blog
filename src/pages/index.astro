@@ -16,13 +16,16 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         </section>
         
         <br />
-        <h2><a href="/blog">Latest Ramblings</a></h2>
-        <!-- <h2><a href="#under-construction---sorry!">Content Map</a></h2> -->
-        <h2><a href="/cv">Curriculum Vitae</a></h2>
-        <h2><a href="/breadboard">Breadboard Apps</a></h2>
-        <h2><a href="https://twitter.com/conrad_mearns">Twitter</a></h2>
-        <h2><a href="https://github.com/ConradMearns">Github</a></h2>
-
+        
+        <ul>
+            <li><h2><a href="/blog">Latest Ramblings</a></h2></li>
+            <!-- <li><h2><a href="#under-construction---sorry!">Content Map</a></h2></li> -->
+            <li><h2><a href="/cv">Curriculum Vitae</a></h2></li>
+            <li><h2><a href="/breadboard">Breadboard Apps</a></h2></li>
+            <li><h2><a href="https://twitter.com/conrad_mearns">Twitter</a></h2></li>
+            <li><h2><a href="https://github.com/ConradMearns">Github</a></h2></li>
+        </ul>
+            
         <footer>
             <ColorPalette />
             <p><a href="https://github.com/ConradMearns/blog">❤</a></p>
@@ -68,6 +71,11 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 		text-shadow: 0 3px 10px rgba(0,0,0,.15);
     }
 
+    li {
+        list-style: none;
+        line-height: 1;
+    }
+
     footer {
         position: fixed;
         left: 0;
@@ -75,7 +83,7 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         width: 100%;
         text-align: center;
         font-size: 0.7rem;
-        line-height: 1em;
+        line-height: 1;
     }
 
 </style>
