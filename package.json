@@ -20,6 +20,9 @@
   "dependencies": {
     "@astrojs/markdown-component": "^1.0.1",
     "@fontsource/noto-sans-sc": "^4.5.11",
-    "@fontsource/raleway": "^4.5.10"
+    "@fontsource/raleway": "^4.5.10",
+    "d3": "^7.6.1",
+    "stardust-core": "^0.2.4",
+    "stardust-webgl": "^0.2.4"
   }
 }
