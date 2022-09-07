@@ -1,0 +1,93 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Markdown from '@astrojs/markdown-component';
+---
+
+<Layout title="Conrad's site :)">
+	<main>
+        <Markdown>
+            # Conrad Mearns
+            ## Data Engineer
+            ### Pacific Northwest National Laboratory
+
+            - [Hello](#)
+            - [Latest Ramblings](/blog)
+            - [Curriculum Vitae](/cv)
+            - [Breadboard Apps](/breadboard)
+        </Markdown>
+	</main>
+</Layout>
+
+
+
+<style>
+    :root {
+        --title-margin: 0.3em;
+	}
+
+    main {
+        margin: 7%;
+    }
+
+    /* a {
+        font-size: min(8vw, 2rem);
+    } */
+
+    a {
+        /* color: var(--color-nav-link); */
+        text-decoration: none;
+    }
+    /* a::before {
+        content: "[ ";
+    }
+    a::after {
+        content: " ]";
+    } */
+    a:hover {
+        text-decoration: underline;
+    }
+
+    h1 {
+		text-shadow: 0 7px 13px rgba(0,0,0,.15);
+    }
+
+    ul {
+        padding-left: 1em;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    h1 {
+        /* line-height: 1; */
+        margin: var(--title-margin) 0 ;
+    }
+    
+    h1 + h2 {
+        /* line-height: 1; */
+        margin: var(--title-margin) 0 ;
+    }
+    
+    h1 + h2 + h3 {
+        /* line-height: 1; */
+        margin: var(--title-margin) 0 ;
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.7rem;
+        line-height: 1;
+    }
+
+
+	main {
+		color: var(--color-text);
+	}
+
+
+</style>

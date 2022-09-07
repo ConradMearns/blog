@@ -38,6 +38,24 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 
 <style>
+	html {
+		height: 100%;
+		font-family: "Raleway", "Noto Sans SC", sans-serif;
+		font-weight: 300;
+		/* background-image: linear-gradient(
+		42deg,
+		var(--color-bg-darker) 0%,
+		var(--color-bg) 80%
+		); */
+		color: var(--color-text);
+	}
+
+	:global(h1) {
+		font-size: var(--font-size-xl);
+		/* text-shadow: 6px 3px 6px var(--color-bg-shadow); */
+		font-weight: 500;
+	}
+
     main {
         margin: 10%;
     }
