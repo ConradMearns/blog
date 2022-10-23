@@ -8,11 +8,14 @@ For some reason, I can't get the style to apply from the `Layout` file. That's a
 
 I'd like to understand how images in [Astro](https://astro.build) work because from what I understand, this could save me a ton of time building a better gallery.
 
+It seems the integration I wanted to use to help optimize image loading isn't working on windows, so I'm scraping that idea for now. Sorry for the poor performance loading these!
+
 ![Fishin](/img/20220813_131110.JPG)
 
 ![Walkin](/img/signal-2022-08-23-21-16-45-349.jpg)
 
 ![Keybin](/img/20221009_113025.JPG)
+
 
 <style>
 	img {
