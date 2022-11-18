@@ -1,24 +1,31 @@
 ---
-import Parser from 'rss-parser'
+// import Parser from 'rss-parser'
 
-type CustomFeed = {foo: string};
-type CustomItem = {bar: number};
+// type CustomFeed = {foo: string};
+// type CustomItem = {bar: number};
 
-const parser: Parser<CustomFeed, CustomItem> = new Parser();
-const feed = await parser.parseURL(Astro.url.origin + '/rss.xml');
+// const parser: Parser<CustomFeed, CustomItem> = new Parser();
+// const feed = await parser.parseURL(Astro.url.origin + '/rss.xml');
 ---
 
-<h1>{feed.title}</h1>
-
+<!-- <h1>{feed.title}</h1> -->
+<!-- 
 {feed.items.map((item) => (
     <a href={item.link}>
         <h2>{item.title}</h2>
     </a>
-))}
+))} -->
 
 <hr />
 
+<strike>    
+    <p>
+        This list of posts is being interpretted at build time via the `/rss.xml` endpoint I have exposed.
+        Astro Components are meant not to be sent to the client, so this list is not dynamic.
+    </p>
+</strike>
+
 <p>
-    This list of posts is being interpretted at build time via the `/rss.xml` endpoint I have exposed.
-    Astro Components are meant not to be sent to the client, so this list is not dynamic.
+    This was supposed to read the /rss.xml and built a static endpoint, however this fails during build time.
+    It works during dev-runtime
 </p>
