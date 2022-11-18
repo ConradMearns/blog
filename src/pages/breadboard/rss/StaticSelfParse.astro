@@ -5,7 +5,8 @@ type CustomFeed = {foo: string};
 type CustomItem = {bar: number};
 
 const parser: Parser<CustomFeed, CustomItem> = new Parser();
-const feed = await parser.parseURL(Astro.url.origin + '/rss.xml');
+const feed = await parser.parseURL(import.meta.env.SITE + '/rss.xml');
+// const feed = await parser.parseURL(Astro.url.origin + '/rss.xml');
 ---
 
 <h1>{feed.title}</h1>
