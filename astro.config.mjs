@@ -11,4 +11,11 @@ export default defineConfig({
     mdx(),
     compress(),
   ],
+  vite: {
+    ssr: {
+      noExternal: [
+        'p5-svelte'
+      ]
+    }
+  }
 });
