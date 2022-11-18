@@ -4,7 +4,8 @@
     let parser = new XMLParser()
 
     async function get_xml() {
-        const xml_res =  await fetch("http://localhost:3000/rss.xml")
+        const xml_res =  await fetch("https://conrads.website/rss.xml")
+        // const xml_res =  await fetch("http://localhost:3000/rss.xml")
         const xml = await xml_res.text()
         const feed = parser.parse(xml);
         
