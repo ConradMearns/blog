@@ -3,7 +3,7 @@ import svelte from "@astrojs/svelte";
 import mdx from "@astrojs/mdx";
 import compress from "astro-compress";
 import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import rehypeMathJaxSvg from 'rehype-mathjax';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,14 +15,13 @@ export default defineConfig({
   ],
   vite: {
     ssr: {
-      noExternal: [
-        'p5-svelte'
-      ]
+      noExternal: [ 'p5-svelte' ]
     }
   },
   markdown: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
     extendDefaultPlugins: true,
-  }
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeMathJaxSvg],
+  },
+
 });
