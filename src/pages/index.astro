@@ -1,108 +1,154 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import ColorPalette from '@components/ColorPalette.astro';
+import Layout from "@layouts/Layout.astro";
+import Markdown from "@astrojs/markdown-component";
 
-const utc = new Date().toLocaleString()
+const utc = new Date().toLocaleString();
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 ---
 
-<Layout title="con's site :)">
-	<main>
+<Layout title="康 RAD">
+  <main>
+    <div class="parent">
+      <div class="div1">
         <section class="title-card">
-            <h3>Hi, I'm</h3>
-            <h1>Conrad <span class="less-emphasis">Mearns</span></h1>
-            <h2>Data Engineer</h2>
-            <h3>Pacific Northwest National Laboratory</h3>
+          <h3>Hi, I'm</h3>
+          <h1>Conrad <span class="less-emphasis">Mearns</span></h1>
+          <h3>
+            <a href="/cv">a Data Engineer @ the Pacific Northwest National Laboratory</a>
+          </h3>
         </section>
-        
-        <br />
-        
-        <ul>
-            <li><h2><a href="/blog">Latest Ramblings</a></h2></li>
-            <!-- <li><h2><a href="#under-construction---sorry!">Content Map</a></h2></li> -->
-            <li><h2><a href="/cv">Curriculum Vitae</a></h2></li>
-            <li><h2><a href="/breadboard">Breadboard Apps</a></h2></li>
-            <!-- bonk! -->
-            <!-- <li><h2><a href="https://twitter.com/conrad_mearns">Twitter</a></h2></li> -->
-            <li><h2><a href="https://github.com/ConradMearns">Github</a></h2></li>
-        </ul>
-            
-        <footer>
-            <ColorPalette />
-            <p><a href="https://github.com/ConradMearns/blog">❤</a></p>
-            <p>{utc} - {timezone}</p>
-        </footer>
 
+        <section class="links">
+          <ul>
+            <!-- <li><a href="/blog">Latest Ramblings</a></li> -->
+            <li><a href="/breadboard">Breadboard</a></li>
+            <li><a href="/bookshelf">Bookshelf</a></li>
+            <li><a href="https://github.com/ConradMearns">Github</a></li>
+          </ul>
+        </section>
+      </div>
 
-	</main>
+      <div class="div2">
+        <section class="vert">
+          <h1>嗨 — 我是康明智</h1>
+        </section>
+      </div>
+
+      <div class="div3">
+        <Markdown>
+            I'm not a desinger, so this site is usually in constant flux, 
+            feel free to peruse (once more content is made available)!
+
+            I'm researching the [mechanisms](https://en.wikipedia.org/wiki/Desiring-production)
+            required to construct the future of communication
+            (hopefully) without falling to 
+            [the Curse of Xanadu](https://www.wired.com/1995/06/xanadu/)
+            [*](https://www.youtube.com/watch?v=ASgjSxNdDqI).
+
+            My current interestes are deeply rooted in the required rhizomatic construction of natural and coded language.
+
+            我是2022年八月开始学中文的，
+        </Markdown>
+      </div>
+    </div>
+
+    <footer>
+      <p><a href="https://github.com/ConradMearns/blog">❤</a></p>
+      <p>{utc} - {timezone}</p>
+    </footer>
+  </main>
 </Layout>
 
-
 <style>
-	html {
-		height: 100%;
-		font-family: "Raleway", "Noto Sans SC", sans-serif;
-		font-weight: 300;
-		/* background-image: linear-gradient(
-		42deg,
-		var(--color-bg-darker) 0%,
-		var(--color-bg) 80%
-		); */
-		color: var(--color-text);
-	}
-
-	:global(h1) {
-		font-size: var(--font-size-xl);
-		/* text-shadow: 6px 3px 6px var(--color-bg-shadow); */
-		font-weight: 500;
-	}
-
-    main {
-        margin: 10%;
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr) 3rem;
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 16px;
+        grid-row-gap: 0px;
     }
 
-    h2 > a {
-        font-size: min(8vw, 2rem);
-    }
+    .div1 { grid-area: 1 / 1 / 2 / 4; }
+    .div2 { grid-area: 1 / 4 / 3 / 5; }
+    .div3 { grid-area: 2 / 1 / 3 / 2; }
 
-    a {
-        color: var(--color-nav-link);
-        text-decoration: none;
-    }
-    a::before {
-        content: "[ ";
-    }
-    a::after {
-        content: " ]";
-    }
-    a:hover {
-        text-decoration: underline;
-    }
 
-    section.title-card * {
-		margin: 0;
-    }
+  html {
+    background-color: var(--color-black);
+    height: 100%;
+    /* font-family: "Noto Sans SC", sans-serif; */
+    color: var(--color-white);
+  }
 
-    .less-emphasis {
-        color: rgba(0, 0, 0, 0.7);
-    }
-    h1 {
-		text-shadow: 0 3px 10px rgba(0,0,0,.15);
-    }
+  p {
+    font-weight: 500;
+    font-family: sans-serif;
 
-    li {
-        list-style: none;
-        line-height: 1;
-    }
+  }
 
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        font-size: 0.7rem;
-        line-height: 1;
-    }
+  h1 {
+    /* font-size: ; */
+    font-size: max(2rem, 8vh);
+    /* font-size: min(8vw, var(--font-size-xl)); */
+  }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: serif;
+    font-weight: 100;
+    color: var(--color-white);
+  }
+
+  main {
+    margin: 10%;
+  }
+
+  a {
+    color: var(--c0-green);
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  a:hover {
+    color: var(--color-white);
+    text-shadow: 0 0 6px var(--color-white);
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  section.vert * {
+    writing-mode: vertical-rl;
+    margin: 0;
+  }
+
+  section.title-card * {
+    margin: 0;
+  }
+
+  section.links * {
+    font-size: 1.7rem;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+}
+
+  footer {
+    color: var(--color-white);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    /* font-size: 0.9rem; */
+    line-height: 1;
+  }
 </style>
