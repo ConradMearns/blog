@@ -20,8 +20,6 @@
   "dependencies": {
     "@astrojs/markdown-component": "^1.0.1",
     "@astrojs/rss": "^1.0.3",
-    "@fontsource/noto-sans-sc": "^4.5.11",
-    "@fontsource/raleway": "^4.5.10",
     "d3": "^7.6.1",
     "fast-xml-parser": "^4.0.11",
     "p5": "^1.5.0",
