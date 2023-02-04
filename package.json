@@ -10,16 +10,17 @@
     "astro": "astro"
   },
   "devDependencies": {
+    "@astrojs/image": "^0.13.0",
     "@astrojs/mdx": "^0.10.0",
-    "@astrojs/svelte": "^1.0.0",
-    "astro": "^1.0.6",
+    "astro": "^2.0.2",
     "astro-compress": "^1.0.5",
-    "svelte": "^3.49.0",
+    "sharp": "^0.31.3",
     "twemoji-emojis": "^13.1.0"
   },
   "dependencies": {
     "@astrojs/markdown-component": "^1.0.1",
     "@astrojs/rss": "^1.0.3",
+    "@astrojs/svelte": "^2.0.0",
     "d3": "^7.6.1",
     "fast-xml-parser": "^4.0.11",
     "p5": "^1.5.0",
@@ -30,6 +31,7 @@
     "remark-toc": "^8.0.1",
     "rss-parser": "^3.12.0",
     "stardust-core": "^0.2.4",
-    "stardust-webgl": "^0.2.4"
+    "stardust-webgl": "^0.2.4",
+    "svelte": "^3.55.1"
   }
 }
