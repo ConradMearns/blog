@@ -15,11 +15,6 @@ const pages = await Astro.glob<BlogPage>('./notes/*.md').then((x)=>x.sort((b, a)
         Latest Ramblings
     </h1>
 
-    <section>
-        <p>These aren't populated automatically yet, but I'm working on it :)</p>
-        <p>🐌</p>
-    </section>
-
     {pages.map((page) => (
         <h2>
             {page.frontmatter.date}
@@ -31,12 +26,7 @@ const pages = await Astro.glob<BlogPage>('./notes/*.md').then((x)=>x.sort((b, a)
 
 
 <style>
-    section {
-        background-color: aliceblue;
-        padding: 0.5rem;
-        text-align: center;
-    }
-
+    
     h2 > a {
         font-size: min(8vw, 2rem);
     }
