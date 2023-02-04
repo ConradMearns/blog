@@ -1,7 +1,10 @@
-const cacheName = 'v2';
+const cacheName = 'cons_cache_0.1.0';
 
 const contentToCache = [
-  'index.html'
+  'index.html',
+  '/',
+  'bookshelf',
+
 ]
 
 self.addEventListener('install', (e) => {
@@ -40,4 +43,20 @@ self.addEventListener('activate', (e) => {
       return caches.delete(key);
     }))
   }));
+});
+
+/*
+Look for updates
+*/
+// const registration = await navigator.serviceWorker.ready;
+
+self.addEventListener('updateFound', (e) => {
+  e.waitUntil(async () => {
+    const newSW = await navigator.serviceWorker.ready.installing;
+    newSW.addEventListener('statechange', event => {
+      if (newSW.state == 'installed') {
+        console.log('[SW] NEw Service Worker Installed, Pending Activation');
+      }
+    });
+  })
 });
