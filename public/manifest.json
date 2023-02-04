@@ -30,5 +30,14 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Test Shortcut",
+      "short_name": "Test",
+      "description": "A PWA shortcut test",
+      "url": "https://conrads.website/blog/",
+      "icons": []
+    }
   ]
 }
