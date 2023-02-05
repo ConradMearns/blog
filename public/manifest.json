@@ -41,7 +41,7 @@
     }
   ],
   "share_target": {
-    "action": "https://w3c.github.io/web-share/demos/share-files.html",
+    "action": "/share_targets/ParseGet/",
     "enctype": "multipart/form-data",
     "method": "POST",
     "params": {
