@@ -41,12 +41,23 @@
     }
   ],
   "share_target": {
-    "action": "/share_target/",
-    "method": "GET",
+    "action": "https://w3c.github.io/web-share/demos/share-files.html",
+    "enctype": "multipart/form-data",
+    "method": "POST",
     "params": {
       "title": "title",
       "text": "text",
-      "url": "url"
+      "url": "url",
+      "files": [
+        {
+          "name": "media[]",
+          "accept": [
+            "audio/*",
+            "image/*",
+            "video/*"
+          ]
+        }
+      ]
     }
-  }
+    
 }
