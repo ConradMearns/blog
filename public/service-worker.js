@@ -3,8 +3,6 @@ const cacheName = 'cons_cache_0.1.0';
 const contentToCache = [
   'index.html',
   '/',
-  'bookshelf',
-
 ]
 
 self.addEventListener('install', (e) => {
@@ -20,16 +18,33 @@ self.addEventListener('install', (e) => {
 Intercept all fetches
 */
 self.addEventListener('fetch', (e) => {
-  e.respondWith((async () => {
-    const r = await caches.match(e.request);
-    console.log(`[SW] Fetching resource: ${e.request.url}`);
-    if (r) { return r; }
-    const response = await fetch(e.request);
-    const cache = await caches.open(cacheName);
-    console.log(`[SW] Caching new resource: ${e.request.url}`);
-    cache.put(e.request, response.clone());
-    return response;
-  })());
+
+  const url = new URL(e.request.url);
+  // if (e.request.method === 'POST' && url.pathname === '/bookmark') {
+  if (e.request.method === 'POST') {
+    e.respondWith((async () => {
+      const formData = await e.request.formData();
+      const link = formData.get('link') || '';
+      // const responseUrl = await saveBookmark(link);
+      const responseUrl = await new URL('/bookshelf/');
+      
+      return Response.redirect(responseUrl, 303);
+    })());
+  } else {
+    // Caching
+    e.respondWith((async () => {
+      const r = await caches.match(e.request);
+      console.log(`[SW] Fetching resource: ${e.request.url}`);
+      if (r) { return r; }
+      const response = await fetch(e.request);
+      const cache = await caches.open(cacheName);
+      console.log(`[SW] Caching new resource: ${e.request.url}`);
+      cache.put(e.request, response.clone());
+      return response;
+    })());
+    
+  }
+
 });
 
 
