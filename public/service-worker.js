@@ -27,7 +27,7 @@ self.addEventListener('fetch', (e) => {
       // const link = formData.get('link') || '';
       // const responseUrl = await saveBookmark(link);
       
-      return Response.redirect('/bookshelf/', 303);
+      return Response.redirect('/breadboard/share_targets/ParsePost/', 303);
     })());
   } else {
     // Caching
