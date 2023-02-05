@@ -55,7 +55,7 @@ self.addEventListener('updateFound', (e) => {
     const newSW = await navigator.serviceWorker.ready.installing;
     newSW.addEventListener('statechange', event => {
       if (newSW.state == 'installed') {
-        console.log('[SW] NEw Service Worker Installed, Pending Activation');
+        console.log('[SW] New Service Worker Installed, Pending Activation');
       }
     });
   })

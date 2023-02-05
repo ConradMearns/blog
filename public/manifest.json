@@ -39,5 +39,14 @@
       "url": "https://conrads.website/blog/",
       "icons": []
     }
-  ]
+  ],
+  "share_target": {
+    "action": "/share_target/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }
