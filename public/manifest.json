@@ -2,7 +2,7 @@
   "background_color": "#ffffff",
   "theme_color": "#333333",
   "name": "Conrad's Website",
-  "short_name": "con's site",
+  "short_name": "ver-2-5-1130",
   "display": "minimal-ui",
   "start_url": "/",
   "icons": [
@@ -54,7 +54,9 @@
           "accept": [
             "audio/*",
             "image/*",
-            "video/*"
+            "video/*",
+            "text/*",
+            "*/*"
           ]
         }
       ]
