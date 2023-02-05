@@ -19,16 +19,15 @@ Intercept all fetches
 */
 self.addEventListener('fetch', (e) => {
 
-  const url = new URL(e.request.url);
+  // const url = new URL(e.request.url);
   // if (e.request.method === 'POST' && url.pathname === '/bookmark') {
   if (e.request.method === 'POST') {
     e.respondWith((async () => {
-      const formData = await e.request.formData();
-      const link = formData.get('link') || '';
+      // const formData = await e.request.formData();
+      // const link = formData.get('link') || '';
       // const responseUrl = await saveBookmark(link);
-      const responseUrl = await new URL('/bookshelf/');
       
-      return Response.redirect(responseUrl, 303);
+      return Response.redirect('/bookshelf/', 303);
     })());
   } else {
     // Caching

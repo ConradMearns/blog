@@ -2,7 +2,7 @@
   "background_color": "#ffffff",
   "theme_color": "#333333",
   "name": "Conrad's Website",
-  "short_name": "ver-2-5-1130",
+  "short_name": "ver-2-5-1150",
   "display": "minimal-ui",
   "start_url": "/",
   "icons": [
@@ -41,7 +41,7 @@
     }
   ],
   "share_target": {
-    "action": "/breadboard/share_targets/postTest",
+    "action": "/breadboard/share_targets/ParsePost/",
     "enctype": "multipart/form-data",
     "method": "POST",
     "params": {
