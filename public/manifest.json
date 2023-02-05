@@ -41,7 +41,7 @@
     }
   ],
   "share_target": {
-    "action": "/share_targets/ParseGet/",
+    "action": "/share_targets/postTest",
     "enctype": "multipart/form-data",
     "method": "POST",
     "params": {
