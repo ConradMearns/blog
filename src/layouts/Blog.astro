@@ -10,7 +10,7 @@ const { title } = Astro.props.frontmatter
 	</article>
 </Layout>
 
-<style>
+<style is:global>
 	h1 {
 		text-align: center;
 	}
@@ -19,5 +19,9 @@ const { title } = Astro.props.frontmatter
 		margin: auto;
 		padding-bottom: 100px;
 		max-width: 650px;
+	}
+
+	img {
+		max-width: 100%;
 	}
 </style>

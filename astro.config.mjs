@@ -5,6 +5,7 @@ import compress from "astro-compress";
 import remarkMath from 'remark-math';
 import rehypeMathJaxSvg from 'rehype-mathjax';
 import image from "@astrojs/image";
+import remarkWikiLink from '@flowershow/remark-wiki-link';
 
 // https://astro.build/config
 
@@ -21,7 +22,13 @@ export default defineConfig({
   },
   markdown: {
     extendDefaultPlugins: true,
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeMathJaxSvg]
+    remarkPlugins: [
+      remarkMath,
+      remarkWikiLink,
+    ],
+    rehypePlugins: [
+      rehypeMathJaxSvg,
+    ],
+    // remarkWikiLink: { markdownFolder: "/obsimg/" }, // doesn't work?
   }
 });
