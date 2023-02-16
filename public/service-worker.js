@@ -50,14 +50,14 @@ self.addEventListener('fetch', (e) => {
 /*
 Clear out all old caches
 */
-self.addEventListener('activate', (e) => {
-  e.waitUntil(caches.keys().then((keyList) => {
-    return Promise.all(keyList.map((key) => {
-      if (key === cacheName) { return; }
-      return caches.delete(key);
-    }))
-  }));
+self.addEventListener('activate', async (event) => {
+
+  const existingCaches = await caches.keys();
+  const invalidCaches = existingCaches.filter(c => c !== cacheName);
+  await Promise.all(invalidCaches.map(ic => caches.delete(ic)));
+  
 });
+
 
 /*
 Look for updates

@@ -6,6 +6,9 @@ const { minutesRead } = Astro.props.frontmatter;
 ---
 
 <Layout title={title}>
+
+	<Debug {Astro.props.frontmatter}></Debug>
+
 	<h1>{title}</h1>
 	<article>
 		<div class="info">

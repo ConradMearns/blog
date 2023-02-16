@@ -5,13 +5,14 @@ import compress from "astro-compress";
 import remarkMath from 'remark-math';
 import rehypeMathJaxSvg from 'rehype-mathjax';
 import image from "@astrojs/image";
+import remarkToc from 'remark-toc';
 import remarkWikiLink from '@flowershow/remark-wiki-link';
 
-// https://astro.build/config
+// Custom remark plugins
+import { remarkReadingTime } from './src/remark/remark-reading-time.mjs';
 
 // https://astro.build/config
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://conrads.website',
   integrations: [svelte(), mdx(), compress(), image()],
@@ -23,11 +24,14 @@ export default defineConfig({
   markdown: {
     extendDefaultPlugins: true,
     remarkPlugins: [
+      remarkToc,
       remarkMath,
       remarkWikiLink,
+      remarkReadingTime,
     ],
     rehypePlugins: [
       rehypeMathJaxSvg,
+      // ['rehype-toc', { headings: ['h1', 'h2'] }],
     ],
     // remarkWikiLink: { markdownFolder: "/obsimg/" }, // doesn't work?
   }
