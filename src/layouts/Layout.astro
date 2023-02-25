@@ -53,7 +53,7 @@ const { title } = Astro.props as Props;
 
 		<script>
 			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register("/service-worker.js");
+				// navigator.serviceWorker.register("/service-worker.js");
 			}
 		</script>
 
@@ -136,5 +136,8 @@ const { title } = Astro.props as Props;
 	html {
 		height: 100%;
 		font-size: 20px;
+	}
+	body {
+		margin: 0;
 	}
 </style>

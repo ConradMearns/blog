@@ -7,9 +7,17 @@ const { minutesRead } = Astro.props.frontmatter;
 
 <Layout title={title}>
 
-	<Debug {Astro.props.frontmatter}></Debug>
+	<ul class="navigation">
+		<li><a href="/">conrads.website</a></li>
+		<li><a href="/blog/">blog</a></li>
+		<li><a href="/breadboard/">breadboard</a></li>
+	</ul>
 
+	<Debug {Astro.props.frontmatter}></Debug>
+	
 	<h1>{title}</h1>
+	  
+
 	<article>
 		<div class="info">
 			{minutesRead}
@@ -24,6 +32,58 @@ const { minutesRead } = Astro.props.frontmatter;
 		padding: 0.5em;
 		background-color:lightsalmon;
 	}
+
+	.navigation {
+		display: flex;
+		flex-direction: row wrap;
+		justify-content: space-around;
+		/* justify-content: center; */
+		padding: 0.3em;
+		margin: 0;
+		background-color: #272425;
+	}
+	
+	.navigation li {
+		margin: 0 10px;
+		/* text-align: center; */
+		list-style: none;
+	}
+	
+	.navigation a {
+		color: #F0EEF1;
+		display: block;
+		/* color: var(--color-nav-link); */
+        text-decoration: none;
+	}
+
+	.navigation a:hover {
+		text-decoration: underline;
+	}
+
+
+
+
+	@media all and (max-width: 600px) {
+	.navigation {
+		flex-flow: column wrap;
+		padding: 0;
+	}
+	.navigation a { 
+		text-align: center; 
+		padding: 10px;
+		border-top: 1px solid rgba(255, 255, 255,0.3); 
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+	}
+	.navigation li:last-of-type a {
+		border-bottom: none;
+	}
+	}
+
+
+
+
+
+
 
 	article {
 		line-height: 1.5rem;
