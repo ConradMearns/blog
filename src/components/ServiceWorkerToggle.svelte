@@ -1,30 +1,41 @@
 <script>
   import Switch from "./Switch.svelte";
   import { onMount } from "svelte";
+  import ParseGet from "src/pages/breadboard/share_targets/ParseGet.svelte";
 
-  let switchValue;
+  let mounted = false;
+
+  let switchValue = localStorage.getItem("swEnabled") === "true" ? "on" : "off";
   $: isEnabled = switchValue === "on";
 
   onMount(() => {
     isEnabled = localStorage.getItem("swEnabled") === "true";
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/service-worker.js");
+    console.log('isEnabled', isEnabled)
+    if (isEnabled) {
+      // switchValue = "on"
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js");
+      }
+    } else {
+      // switchValue = "off"
     }
+    mounted = true;
   });
 
   $: {
-    localStorage.setItem("swEnabled", isEnabled);
-    if (isEnabled) {
-      console.log("Registering Service Worker");
-      navigator.serviceWorker.register("/service-worker.js");
-    } else {
-      console.log("Unegistering Service Worker");
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        registrations.forEach((registration) => registration.unregister());
-      });
+    if (mounted) {
+      localStorage.setItem("swEnabled", isEnabled);
+      if (isEnabled) {
+        console.log("Registering Service Worker");
+        navigator.serviceWorker.register("/service-worker.js");
+      } else {
+        console.log("Unegistering Service Worker");
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          registrations.forEach((registration) => registration.unregister());
+        });
+      }
     }
   }
-
 </script>
 
 <!-- on:change={toggleSW} -->
