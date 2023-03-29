@@ -72,10 +72,9 @@ async function checkForUpdates() {
     // const oldHash = localStorage.getItem("srcHash");
     caches.match('/srcHash').then((response) => {
       if (response) {
-        response.text().then((text) => {
+        response.text().then((oldHash) => {
           // console.log('oldHash', text); // "hello"
-          const oldHash = text
-          // console.log('comparing', newHash, oldHash)
+          console.log('comparing', newHash, oldHash)
       
           if (newHash !== oldHash) {
             console.log('[SW] New updates found!')
@@ -84,7 +83,7 @@ async function checkForUpdates() {
               cache.put('/srcHash', new Response(newHash));
             });
             // Update application code
-      
+            
             // Notify user of new version
             self.registration.showNotification("Con's Site Updated!", {
               body: "Conrad's Website has an update.",
