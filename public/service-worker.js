@@ -54,10 +54,6 @@ self.addEventListener("message", (e) => {
   }
 });
 
-
-
-
-
 // Set up periodic update check
 setInterval(() => {
   checkForUpdates();
@@ -65,30 +61,37 @@ setInterval(() => {
 // }, 60 * 60 * 1000); // Check every hour
 
 async function checkForUpdates() {
+  console.log("[SW] Checking for Updates");
+
   try {
-    const response = await fetch('/update.json');
+    const response = await fetch("/src-hash.json");
     const json = await response.json();
+    const newHash = json;
+    // const newHash = json.hash;
 
-    console.log('hello?')
-
-    if (json.newVersionAvailable) {
+    const oldHash = localStorage.getItem("srcHash");
+    if (newHash !== oldHash) {
+      localStorage.setItem("srcHash", newHash);
+      // Update application code
+      
       // Notify user of new version
-      self.registration.showNotification('Con\'s Site Updated!', {
-        body: 'Conrad\'s Website has an update.',
-        icon: 'icons/manifest-icon-192.maskable.png',
+      self.registration.showNotification("Con's Site Updated!", {
+        body: "Conrad's Website has an update.",
+        icon: "icons/manifest-icon-192.maskable.png",
         vibrate: [200, 100, 200],
         data: {
-          url: json.updateUrl
-        }
+          url: "https://conrads.website",
+          // url: json.updateUrl
+        },
       });
     }
   } catch (err) {
-    console.error('Error checking for updates', err);
+    console.error("[SW] Error checking for updates", err);
   }
 }
 
 // Handle notification click event
-self.addEventListener('notificationclick', event => {
+self.addEventListener("notificationclick", (event) => {
   const data = event.notification.data;
 
   event.notification.close();
