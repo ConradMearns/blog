@@ -62,15 +62,17 @@ setInterval(() => {
 
 async function checkForUpdates() {
   console.log("[SW] Checking for Updates");
-
+  
   try {
     const response = await fetch("/src-hash.json");
     const json = await response.json();
     const newHash = json;
     // const newHash = json.hash;
-
+    console.log("[SW] Checking for Updates TRY");
+    
     // const oldHash = localStorage.getItem("srcHash");
     caches.match('/srcHash').then((response) => {
+      console.log("[SW] Checking for Updates MATCH");
       if (response) {
         response.text().then((text) => {
           console.log('oldHash', text); // "hello"
