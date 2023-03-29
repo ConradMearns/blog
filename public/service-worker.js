@@ -68,16 +68,14 @@ async function checkForUpdates() {
     const json = await response.json();
     const newHash = json;
     // const newHash = json.hash;
-    console.log("[SW] Checking for Updates TRY");
     
     // const oldHash = localStorage.getItem("srcHash");
     caches.match('/srcHash').then((response) => {
-      console.log("[SW] Checking for Updates MATCH");
       if (response) {
         response.text().then((text) => {
-          console.log('oldHash', text); // "hello"
+          // console.log('oldHash', text); // "hello"
           const oldHash = text
-          console.log('comparing', newHash, oldHash)
+          // console.log('comparing', newHash, oldHash)
       
           if (newHash !== oldHash) {
             console.log('[SW] New updates found!')
