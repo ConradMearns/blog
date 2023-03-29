@@ -1,76 +1,149 @@
-const cacheName = 'cons_cache_0.1.0';
+const cacheName = "cons_cache_0.1.1";
 
-const contentToCache = [
-  'index.html',
-  '/',
-]
+const contentToCache = ["index.html", "/"];
 
-self.addEventListener('install', (e) => {
-  console.log('[SW] Install');
-  e.waitUntil((async () => {
-    const cache = await caches.open(cacheName);
-    console.log('[SW] Caching all: app shell and content');
-    await cache.addAll(contentToCache);
-  })());
+self.addEventListener("install", (e) => {
+  console.log("[SW] Install");
+  e.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      console.log("[SW] Caching all: app shell and content");
+      return cache.addAll(contentToCache);
+    })
+  );
 });
 
-/*
-Intercept all fetches
-*/
-self.addEventListener('fetch', (e) => {
+self.addEventListener("activate", (e) => {
+  console.log("[SW] Activate");
+  e.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== cacheName) {
+            console.log("[SW] Removing old cache", key);
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+});
 
-  // const url = new URL(e.request.url);
-  // if (e.request.method === 'POST' && url.pathname === '/bookmark') {
-  if (e.request.method === 'POST') {
-    e.respondWith((async () => {
-      // const formData = await e.request.formData();
-      // const link = formData.get('link') || '';
-      // const responseUrl = await saveBookmark(link);
-      
-      return Response.redirect('/breadboard/share_targets/ParsePost/', 303);
-    })());
-  } else {
-    // Caching
-    e.respondWith((async () => {
-      const r = await caches.match(e.request);
+self.addEventListener("fetch", (e) => {
+  console.log("[SW] Fetch");
+  e.respondWith(
+    caches.match(e.request).then((r) => {
       console.log(`[SW] Fetching resource: ${e.request.url}`);
-      if (r) { return r; }
-      const response = await fetch(e.request);
-      const cache = await caches.open(cacheName);
-      console.log(`[SW] Caching new resource: ${e.request.url}`);
-      cache.put(e.request, response.clone());
-      return response;
-    })());
-    
-  }
-
-});
-
-
-/*
-Clear out all old caches
-*/
-self.addEventListener('activate', async (event) => {
-
-  const existingCaches = await caches.keys();
-  const invalidCaches = existingCaches.filter(c => c !== cacheName);
-  await Promise.all(invalidCaches.map(ic => caches.delete(ic)));
-  
-});
-
-
-/*
-Look for updates
-*/
-// const registration = await navigator.serviceWorker.ready;
-
-self.addEventListener('updateFound', (e) => {
-  e.waitUntil(async () => {
-    const newSW = await navigator.serviceWorker.ready.installing;
-    newSW.addEventListener('statechange', event => {
-      if (newSW.state == 'installed') {
-        console.log('[SW] New Service Worker Installed, Pending Activation');
+      if (r) {
+        return r;
       }
-    });
-  })
+      return fetch(e.request).then((response) => {
+        return caches.open(cacheName).then((cache) => {
+          console.log(`[SW] Caching new resource: ${e.request.url}`);
+          cache.put(e.request, response.clone());
+          return response;
+        });
+      });
+    })
+  );
+});
+
+self.addEventListener("message", (e) => {
+  console.log("[SW] Message received:", e.data);
+  if (e.data === "skipWaiting") {
+    self.skipWaiting();
+  }
+});
+
+self.addEventListener("install", (e) => {
+  console.log("[SW] Install");
+  e.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      console.log("[SW] Caching all: app shell and content");
+      return cache.addAll(contentToCache);
+    })
+  );
+});
+
+self.addEventListener("activate", (e) => {
+  console.log("[SW] Activate");
+  e.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== cacheName) {
+            console.log("[SW] Removing old cache", key);
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+});
+
+self.addEventListener("fetch", (e) => {
+  console.log("[SW] Fetch");
+  e.respondWith(
+    caches.match(e.request).then((r) => {
+      console.log(`[SW] Fetching resource: ${e.request.url}`);
+      if (r) {
+        return r;
+      }
+      return fetch(e.request).then((response) => {
+        return caches.open(cacheName).then((cache) => {
+          console.log(`[SW] Caching new resource: ${e.request.url}`);
+          cache.put(e.request, response.clone());
+          return response;
+        });
+      });
+    })
+  );
+});
+
+self.addEventListener("message", (e) => {
+  console.log("[SW] Message received:", e.data);
+  if (e.data === "skipWaiting") {
+    self.skipWaiting();
+  }
+});
+
+self.addEventListener("install", (e) => {
+  console.log("[SW] Install");
+  e.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      console.log("[SW] Caching all: app shell and content");
+      return cache.addAll(contentToCache);
+    })
+  );
+});
+
+self.addEventListener("activate", (e) => {
+  console.log("[SW] Activate");
+  e.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== cacheName) {
+            console.log("[SW] Removing old cache", key);
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+  return self.clients.claim();
+});
+
+self.addEventListener("fetch", (e) => {
+  console.log("[SW] Fetch", e.request.url);
+  e.respondWith(
+    caches.match(e.request).then((response) => {
+      return response || fetch(e.request);
+    })
+  );
+});
+
+self.addEventListener("message", (e) => {
+  if (e.data.action === "skipWaiting") {
+    self.skipWaiting();
+  }
 });
