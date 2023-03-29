@@ -57,7 +57,7 @@ self.addEventListener("message", (e) => {
 // Set up periodic update check
 setInterval(() => {
   checkForUpdates();
-}, 1000); // Check every hour
+}, 1000 * 5); // Check every hour
 // }, 60 * 60 * 1000); // Check every hour
 
 async function checkForUpdates() {
@@ -69,23 +69,37 @@ async function checkForUpdates() {
     const newHash = json;
     // const newHash = json.hash;
 
-    const oldHash = localStorage.getItem("srcHash");
-    if (newHash !== oldHash) {
-      console.log('[SW] New updates found!')
-      localStorage.setItem("srcHash", newHash);
-      // Update application code
+    // const oldHash = localStorage.getItem("srcHash");
+    caches.match('/srcHash').then((response) => {
+      if (response) {
+        response.text().then((text) => {
+          console.log('oldHash', text); // "hello"
+          const oldHash = text
+          console.log('comparing', newHash, oldHash)
+      
+          if (newHash !== oldHash) {
+            console.log('[SW] New updates found!')
+            // localStorage.setItem("srcHash", newHash);
+            caches.open('sw').then((cache) => {
+              cache.put('/srcHash', new Response(newHash));
+            });
+            // Update application code
+      
+            // Notify user of new version
+            self.registration.showNotification("Con's Site Updated!", {
+              body: "Conrad's Website has an update.",
+              icon: "icons/manifest-icon-192.maskable.png",
+              vibrate: [200, 100, 200],
+              data: {
+                url: "https://conrads.website",
+                // url: json.updateUrl
+              },
+            });
+          }
+        });
+      }
+    });
 
-      // Notify user of new version
-      self.registration.showNotification("Con's Site Updated!", {
-        body: "Conrad's Website has an update.",
-        icon: "icons/manifest-icon-192.maskable.png",
-        vibrate: [200, 100, 200],
-        data: {
-          url: "https://conrads.website",
-          // url: json.updateUrl
-        },
-      });
-    }
   } catch (err) {
     console.error("[SW] Error checking for updates", err);
   }
