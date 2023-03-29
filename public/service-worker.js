@@ -1,6 +1,6 @@
 const cacheName = "cons_cache_0.1.2";
 
-const contentToCache = ["index.html", "/"];
+const contentToCache = ["index.html"];
 
 self.addEventListener("install", (e) => {
   console.log("[SW] Install");
@@ -83,7 +83,7 @@ async function checkForUpdates() {
               cache.put('/srcHash', new Response(newHash));
             });
             // Update application code
-            
+
             // Notify user of new version
             self.registration.showNotification("Con's Site Updated!", {
               body: "Conrad's Website has an update.",
