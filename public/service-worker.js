@@ -71,9 +71,10 @@ async function checkForUpdates() {
 
     const oldHash = localStorage.getItem("srcHash");
     if (newHash !== oldHash) {
+      console.log('[SW] New updates found!')
       localStorage.setItem("srcHash", newHash);
       // Update application code
-      
+
       // Notify user of new version
       self.registration.showNotification("Con's Site Updated!", {
         body: "Conrad's Website has an update.",
