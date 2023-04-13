@@ -8,6 +8,10 @@ import image from "@astrojs/image";
 import remarkToc from 'remark-toc';
 import remarkWikiLink from '@flowershow/remark-wiki-link';
 
+
+//Https for local development
+import basicSsl from '@vitejs/plugin-basic-ssl'
+
 // Custom remark plugins
 import { remarkReadingTime } from './src/remark/remark-reading-time.mjs';
 
@@ -18,7 +22,11 @@ export default defineConfig({
   integrations: [svelte(), mdx(), compress(), image()],
   vite: {
     ssr: {
-      noExternal: ['p5-svelte']
+      noExternal: ['p5-svelte'],
+      plugins: [ basicSsl() ],
+      server: {
+        https: true,
+      }
     }
   },
   markdown: {
