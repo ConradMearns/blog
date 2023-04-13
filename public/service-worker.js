@@ -54,6 +54,8 @@ self.addEventListener("message", (e) => {
   }
 });
 
+
+
 // Set up periodic update check
 // setInterval(() => {
 //   checkForUpdates();
@@ -105,12 +107,36 @@ self.addEventListener("message", (e) => {
 // }
 
 // Handle notification click event
-self.addEventListener("notificationclick", (event) => {
-  const data = event.notification.data;
+// self.addEventListener("notificationclick", (event) => {
+//   const data = event.notification.data;
 
-  event.notification.close();
+//   event.notification.close();
 
-  if (data.url) {
-    clients.openWindow(data.url);
+//   if (data.url) {
+//     clients.openWindow(data.url);
+//   }
+// });
+
+
+self.addEventListener('sync', function(event) {
+  if (event.tag === 'periodicSync') {
+    event.waitUntil(sendPushNotification());
   }
 });
+
+function registerPeriodicSync() {
+  if ('periodicSync' in self.registration) {
+    self.registration.periodicSync.register('periodicSync', {
+      minInterval: 60 * 60 * 1000 // One hour
+    }).then(() => {
+      console.log('Periodic sync registered');
+    }).catch((err) => {
+      console.error('Failed to register periodic sync', err);
+    });
+  }
+}
+
+function sendPushNotification() {
+  console.log('Sending push notification...');
+  return self.registration.showNotification('Hello!');
+}

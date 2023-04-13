@@ -172,6 +172,16 @@ const { title } = Astro.props as Props;
           console.log("Notification permission status:", status);
         });
       }
+
+      navigator.serviceWorker.ready.then((registration) => {
+        if ("periodicSync" in registration) {
+          console.log("Period Sync Allowed");
+        } else {
+          console.log("Period Sync NOT Allowed");
+          // alert("Period Sync Not Allowed")
+        }
+      });
+      
     </script>
 
     <title>{title}</title>
