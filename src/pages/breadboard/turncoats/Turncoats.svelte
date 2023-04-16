@@ -1,6 +1,8 @@
 <script>
-  import { circle } from "stardust-core/dist/mark/marks";
   import { onMount } from "svelte";
+
+  import Flag from "./flag.svg";
+  import Axe from "./battle-axe.svg";
 
   let hexPadding = 10; // the padding between each hexagon
 
@@ -12,8 +14,34 @@
     Black: "black",
   };
 
+  const PieceType = {
+    Red: "red",
+    Blue: "skyblue",
+    Black: "black",
+  };
+
+  function winning_color_in(place) {
+    let count = {};
+    let maxCount = 0;
+    let winner = "none";
+
+    for (let i = 0; i < place.length; i++) {
+      let piece = place[i];
+      count[piece] = (count[piece] || 0) + 1;
+
+      if (count[piece] > maxCount) {
+        maxCount = count[piece];
+        winner = piece;
+      } else if (count[piece] === maxCount) {
+        winner = "none";
+      }
+    }
+
+    return winner;
+  }
+
   class Territory {
-    constructor(col, row, type) {
+    constructor(row, col, type) {
       this.col = col;
       this.row = row;
       this.type = type;
@@ -21,7 +49,8 @@
     }
 
     winning_color() {
-
+      // TODO: Not duplicated to winning_color_in because
+      // flag and axe rules need to be added
       let count = {};
       let maxCount = 0;
       let winner = "green";
@@ -42,58 +71,77 @@
     }
   }
 
-  let grid_arrangement = [
-    [0, 1, TerritoryType.Normal],
-    [0, 2, TerritoryType.Normal],
-    [0, 3, TerritoryType.Red],
-    [1, 0, TerritoryType.Normal],
-    [1, 1, TerritoryType.Normal],
-    [1, 3, TerritoryType.Normal],
-    [2, 1, TerritoryType.Blue],
-    [2, 2, TerritoryType.Normal],
-    [2, 3, TerritoryType.Normal],
-    [2, 4, TerritoryType.Normal],
-    [3, 3, TerritoryType.Black],
-    // [1, 2, TerritoryType.Blocked],
-  ];
+  class Game {
+    constructor(player_count) {
+      this.player_count = player_count;
+      this.current_player = 0;
+      this.turn_count = 0;
+      this.territories = [];
+      this.bag = [];
+      this.hands = [];
+      this.flag = []
+      this.axe = []
+    }
 
-  // let grid_pieces = Array(grid_arrangement.length).fill([]);
-  let grid_pieces = Array.from(Array(grid_arrangement.length), () => []);
+    setup() {
+      this.bag = Array(21)
+        .fill([PieceType.Red, PieceType.Blue, PieceType.Black])
+        .flat();
 
-  const PieceType = {
-    Red: "red",
-    Blue: "skyblue",
-    Black: "black",
-  };
+      // TODO: Reset Grid Pieces
+      this.territories = [
+        new Territory(0, 1, TerritoryType.Normal),
+        new Territory(0, 2, TerritoryType.Normal),
+        new Territory(0, 3, TerritoryType.Red),
+        new Territory(1, 0, TerritoryType.Normal),
+        new Territory(1, 1, TerritoryType.Normal),
+        new Territory(1, 3, TerritoryType.Normal),
+        new Territory(2, 1, TerritoryType.Blue),
+        new Territory(2, 2, TerritoryType.Normal),
+        new Territory(2, 3, TerritoryType.Normal),
+        new Territory(2, 4, TerritoryType.Normal),
+        new Territory(3, 3, TerritoryType.Black),
+        // new Territory(1, 2, TerritoryType.Blocked),
+      ];
 
-  let bag = Array(21)
-    .fill([PieceType.Red, PieceType.Blue, PieceType.Black])
-    .flat();
+      this.hands = Array.from(Array(this.player_count), () => []);
 
-  let hand_count = 2;
-  let hands = Array(hand_count);
+      // console.log("Territory")
+      for (let i = 0; i < this.territories.length; i++) {
+        for (let j = 0; j < 2; j++) {
+          if (this.territories[i].type == TerritoryType.Red) {
+            this.territories[i].pieces.push(pull_stone_from_bag(PieceType.Red));
+          } else if (this.territories[i].type == TerritoryType.Blue) {
+            this.territories[i].pieces.push(pull_stone_from_bag(PieceType.Blue));
+          } else if (this.territories[i].type == TerritoryType.Black) {
+            this.territories[i].pieces.push(pull_stone_from_bag(PieceType.Black));
+          } else {
+            this.territories[i].pieces.push(pull_from_bag());
+          }
+        }
+      }
 
-  function winning_color_from_territory(territory) {
-    const pieces = grid_pieces[territory];
-
-    let count = {};
-    let maxCount = 0;
-    let winner = "green";
-
-    for (let i = 0; i < pieces.length; i++) {
-      let piece = pieces[i];
-      count[piece] = (count[piece] || 0) + 1;
-
-      if (count[piece] > maxCount) {
-        maxCount = count[piece];
-        winner = piece;
-      } else if (count[piece] === maxCount) {
-        winner = "green";
+      // Hands
+      for (let i = 0; i < hands.length; i++) {
+        for (let j = 0; j < 8; j++) {
+          hands[i].push(pull_from_bag());
+        }
       }
     }
 
-    return winner;
+    next_turn() {
+      this.turn_count += 1;
+      this.current_player += 1;
+      this.current_player %= this.player_count;
+    }
   }
+
+  let territories = [];
+  let bag = [];
+  let hand_count = 2;
+  let hands = [];
+
+  let current_turn = 0;
 
   function pull_stone_from_bag(stone) {
     const index = bag.indexOf(stone);
@@ -102,9 +150,14 @@
     return piece;
   }
 
+  function remove_stone_from(stone, place) {
+    const index = place.indexOf(stone);
+    place.splice(index, 1)[0];
+    return place;
+  }
+
   function pull_from_bag() {
     let piece = bag.splice(Math.floor(Math.random() * bag.length), 1)[0];
-    // console.log(piece)
     bag = bag;
     return piece;
   }
@@ -115,34 +168,46 @@
     bag = Array(21)
       .fill([PieceType.Red, PieceType.Blue, PieceType.Black])
       .flat();
-    grid_pieces = Array.from(Array(grid_arrangement.length), () => []);
+
+    // TODO: Reset Grid Pieces
+    territories = [
+      new Territory(0, 1, TerritoryType.Normal),
+      new Territory(0, 2, TerritoryType.Normal),
+      new Territory(0, 3, TerritoryType.Red),
+      new Territory(1, 0, TerritoryType.Normal),
+      new Territory(1, 1, TerritoryType.Normal),
+      new Territory(1, 3, TerritoryType.Normal),
+      new Territory(2, 1, TerritoryType.Blue),
+      new Territory(2, 2, TerritoryType.Normal),
+      new Territory(2, 3, TerritoryType.Normal),
+      new Territory(2, 4, TerritoryType.Normal),
+      new Territory(3, 3, TerritoryType.Black),
+      // new Territory(1, 2, TerritoryType.Blocked),
+    ];
+
     hands = Array.from(Array(hand_count), () => []);
 
     // console.log("Territory")
-    for (let i = 0; i < grid_pieces.length; i++) {
+    for (let i = 0; i < territories.length; i++) {
       for (let j = 0; j < 2; j++) {
-        if (grid_arrangement[i][2] == TerritoryType.Red) {
-          grid_pieces[i].push(pull_stone_from_bag(PieceType.Red));
-        } else if (grid_arrangement[i][2] == TerritoryType.Blue) {
-          grid_pieces[i].push(pull_stone_from_bag(PieceType.Blue));
-        } else if (grid_arrangement[i][2] == TerritoryType.Black) {
-          grid_pieces[i].push(pull_stone_from_bag(PieceType.Black));
+        if (territories[i].type == TerritoryType.Red) {
+          territories[i].pieces.push(pull_stone_from_bag(PieceType.Red));
+        } else if (territories[i].type == TerritoryType.Blue) {
+          territories[i].pieces.push(pull_stone_from_bag(PieceType.Blue));
+        } else if (territories[i].type == TerritoryType.Black) {
+          territories[i].pieces.push(pull_stone_from_bag(PieceType.Black));
         } else {
-          grid_pieces[i].push(pull_from_bag());
+          territories[i].pieces.push(pull_from_bag());
         }
       }
     }
-    grid_pieces = grid_pieces;
 
+    // Hands
     for (let i = 0; i < hands.length; i++) {
       for (let j = 0; j < 8; j++) {
         hands[i].push(pull_from_bag());
       }
     }
-    console.log("Hands");
-    console.log(hands);
-
-    // bag = bag;
   }
 
   function hex_x(col, row, bias_x, hexSize = 60) {
@@ -170,49 +235,91 @@
     return points;
   }
 
-  function territory_points(x, y, bx, by, size = 30) {
-    const hex1 = hexagonPoints(hex_x(0, 0, bx, size), hex_y(0, by, size), size);
-    const hex2 = hexagonPoints(hex_x(0, 1, bx, size), hex_y(1, by, size), size);
-    const hex3 = hexagonPoints(hex_x(1, 0, bx, size), hex_y(0, by, size), size);
-
-    return [
-      hex2[5],
-      hex2[0],
-      hex2[1],
-      hex2[2],
-      hex3[1],
-      hex3[2],
-      hex3[3],
-      hex3[4],
-      hex1[3],
-      hex1[4],
-      hex1[5],
-      hex1[0],
-    ];
-  }
-
   function drawHexagon(x, y, hexSize = 30) {
     let points = hexagonPoints(x, y, hexSize);
     let pointString = points.map((p) => p.join(",")).join(" ");
     return pointString;
   }
 
-  let circleIndex = 0;
-  let interval;
-  onMount(() => {
-    interval = setInterval(() => {
-      if (circleIndex >= 5) {
-        circleIndex = 0;
-      } else {
-        circleIndex += 1;
-      }
-    }, 500);
-  });
+  function next_turn() {
+    current_turn += 1;
+    current_turn %= hand_count;
+  }
 
-  // onMount(() => {
-  //   reset();
-  // });
+  // ACTIONS
+
+  let current_action;
+
+  const ActionTypes = {
+    Negotiate: "Negotiate",
+    Recruit: "Recruit",
+    Battle: "Battle",
+    March: "March",
+  };
+  class GenericAction {
+    constructor() {
+      this.doing_text = "Uhh";
+    }
+    cancel() {}
+    resolve() {}
+  }
+  class Negotiate {
+    constructor() {
+      this.type = ActionTypes.Negotiate;
+      this.doing_text = "Negotiating...";
+      this.new_stone = pull_from_bag();
+      this.sacrifice = undefined;
+    }
+    cancel() {
+      bag.push(this.new_stone);
+      bag = bag;
+    }
+    resolve() {
+      bag.push(this.sacrifice);
+      bag = bag;
+
+      remove_stone_from(this.sacrifice, hands[current_turn]);
+      hands[current_turn].push(this.new_stone);
+      hands[current_turn] = hands[current_turn];
+
+      console.log(current_turn, "negotiated for", this.new_stone);
+
+      next_turn();
+    }
+  }
+  class Recruit {
+    constructor() {
+      this.type = ActionTypes.Recruit;
+      this.doing_text = "Recruiting...";
+      this.recruit = undefined;
+      this.territory = undefined;
+    }
+    cancel() {}
+    resolve() {
+      remove_stone_from(this.recruit, hands[current_turn]);
+      hands[current_turn] = hands[current_turn];
+
+      territories[this.territory].pieces.push(this.recruit);
+      territories = territories;
+
+      next_turn();
+    }
+  }
+
+  function negotiate() {
+    current_action = new Negotiate();
+  }
+
+  function recruit() {
+    current_action = new Recruit();
+  }
+
   reset();
+
+  let game = new Game(hand_count)
+
+  $: hand_count, reset();
+  $: game.player_count = hand_count, game.setup();
 </script>
 
 <h1>Turncoats</h1>
@@ -225,30 +332,110 @@ Hands:
 
 <button on:click={reset}>Reset State</button>
 
+<br />
+
+<hr />
+
+{#if current_action}
+  <p>{current_action.doing_text}</p>
+
+  {#if current_action.type == ActionTypes.Negotiate}
+    Drew: {current_action.new_stone}
+    Swap:
+    <select bind:value={current_action.sacrifice}>
+      {#each hands[current_turn].map((piece) => ({ text: piece })) as piece}
+        <option value={piece.text}>
+          {piece.text}
+        </option>
+      {/each}
+    </select>
+    <br />
+    <button
+      on:click={() => {
+        current_action.resolve();
+        current_action = undefined;
+      }}>Negotiate!</button
+    >
+  {:else if current_action.type == ActionTypes.Recruit}
+    Recruit:
+    <select bind:value={current_action.recruit}>
+      {#each hands[current_turn].map((piece) => ({ text: piece })) as piece}
+        <option value={piece.text}>
+          {piece.text}
+        </option>
+      {/each}
+    </select>
+    to
+    <select bind:value={current_action.territory}>
+      {#each territories.map((t, i) => ({ text: i })) as t, i (i)}
+        <option value={i}>
+          {i}
+        </option>
+      {/each}
+    </select>
+    <br />
+    <button
+      on:click={() => {
+        current_action.resolve();
+        current_action = undefined;
+      }}>Recruit!</button
+    >
+  {/if}
+
+  <br />
+  <button
+    on:click={() => {
+      current_action.cancel();
+      current_action = undefined;
+    }}>DEBUG Cancel</button
+  >
+{:else}
+  <button on:click={recruit}>Recruit</button>
+  <!-- <button>Battle</button> -->
+  <!-- <button>March</button> -->
+  <button on:click={negotiate}>Negotiate</button>
+
+  <br />
+{/if}
+<hr />
+
 <svg viewBox="0 0 1000 1000" style="width:100%;height:auto;margin:0;">
   <rect width="100%" height="100%" fill="salmon" />
 
-  {#each grid_arrangement as [row, col, type], i (i)}
+  {#each territories as territory, i (i)}
     <polygon
-      points={drawHexagon(hex_x(col, row, 120, 60), hex_y(row, 120, 60), 60)}
-      fill={type == TerritoryType.Blocked ? "lightgray" : "white"}
+      points={drawHexagon(
+        hex_x(territory.col, territory.row, 120, 60),
+        hex_y(territory.row, 120, 60),
+        60
+      )}
+      fill={territory.type == TerritoryType.Blocked ? "lightgray" : "white"}
     />
-    <!-- <text x={hex_x(col, row, 110, 60)} y={hex_y(row, 90, 60)} class="small">
+
+    <text
+      x={hex_x(territory.col, territory.row, 110, 60)}
+      y={hex_y(territory.row, 90, 60)}
+      class="small"
+    >
       {i}
-    </text> -->
+    </text>
   {/each}
 
-  {#each grid_arrangement as [row, col, type], i (i)}
+  {#each territories as territory, i (i)}
     <polygon
-      points={drawHexagon(hex_x(col, row, 120, 60), hex_y(row, 120, 60), 52)}
-      stroke={winning_color_from_territory(i)}
+      points={drawHexagon(
+        hex_x(territory.col, territory.row, 120, 60),
+        hex_y(territory.row, 120, 60),
+        52
+      )}
+      stroke={territory.winning_color()}
       stroke-width="3"
       fill="transparent"
     />
-    {#each grid_pieces[i] as piece, j (j)}
+    {#each territory.pieces as piece, j (j)}
       <circle
-        cx={hex_x(col, row, 90 + 25 * j, 60)}
-        cy={hex_y(row, 130, 60)}
+        cx={hex_x(territory.col, territory.row, 90 + 25 * j, 60)}
+        cy={hex_y(territory.row, 130, 60)}
         r="10"
         stroke="white"
         fill={piece}
@@ -257,10 +444,14 @@ Hands:
     {/each}
   {/each}
 
-  {#each grid_arrangement as [row, col, type]}
+  {#each territories as territory}
     <polygon
-      points={drawHexagon(hex_x(col, row, 120, 60), hex_y(row, 120, 60), 60)}
-      stroke={type}
+      points={drawHexagon(
+        hex_x(territory.col, territory.row, 120, 60),
+        hex_y(territory.row, 120, 60),
+        60
+      )}
+      stroke={territory.type}
       fill="transparent"
       stroke-width="5"
     />
@@ -282,9 +473,9 @@ Hands:
       cx={50 + 150 * i}
       cy={520}
       r="50"
-      stroke="white"
+      stroke={current_turn == i % hand_count ? "green" : "transparent"}
       fill="white"
-      stroke-width="1"
+      stroke-width="5"
     />
     {#if hand}
       {#each hand as piece, j (j)}
@@ -299,10 +490,22 @@ Hands:
       {/each}
     {/if}
   {/each}
+
+  <image x="800" y="20" width="80" height="80" href={Flag} />
+  <image x="800" y="160" width="80" height="80" href={Axe} />
 </svg>
 
 <style>
   .heavy {
     font: bold 30px sans-serif;
+  }
+
+  h1 {
+    line-height: 2;
+    margin: 0;
+  }
+
+  * {
+    line-height: 2em;
   }
 </style>
