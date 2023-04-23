@@ -47,6 +47,8 @@
       this.hands = [];
       this.flag = [];
       this.axe = [];
+      this.negotiate_count = 0;
+      this.game_over = false;
     }
 
     active_player_hand() {
@@ -60,6 +62,12 @@
     factions_in_territory(territory_index) {
       return [...new Set(this.territories[territory_index].pieces)];
     }
+
+    factions_in_territory_for_battle(territory_index, except_faction) {
+      // return [...new Set(this.territories[territory_index].pieces)];
+      return this.territories[territory_index].pieces.filter(faction => faction !== except_faction);
+  }
+
 
     count_duplicates(array, duplicate) {
       let duplicates = 0;
@@ -161,10 +169,50 @@
       return this.movement_graph[territory];
     }
 
+    winning_faction() {
+      const territories = this.territories.map(t => this.winning_color(t));
+      return this.winning_color_from(territories)
+    }
+
+
+    winning_player() {
+      const faction = this.winning_faction()
+
+      if (faction == "tie" || faction == "green") {
+        return "No One!"
+      }
+
+      const players = this.hands.map(h => h.filter(f => f === faction).length)
+
+      // return players.reduce((maxIndex, currentValue, currentIndex) => {
+      //   return currentValue > players[maxIndex] ? currentIndex : maxIndex;
+      // }, 0);
+
+      let count = {};
+      let maxCount = 0;
+      let winner = "tie";
+
+      for (let i = 0; i < players.length; i++) {
+        let value = players[i];
+        count[value] = (count[value] || 0) + 1;
+
+        if (count[value] > maxCount) {
+          maxCount = count[value];
+          winner = i;
+        } else if (count[value] === maxCount) {
+          winner = "tie";
+        }
+      }
+
+      return winner
+    }
+
     setup(players = 2) {
       this.player_count = players;
       this.turn_count = 0;
       this.active_player = 0;
+      this.negotiate_count = 0;
+      this.game_over = false;
 
       this.bag = Array(21)
         .fill([PieceType.Red, PieceType.Blue, PieceType.Black])
@@ -235,9 +283,13 @@
     }
 
     next_turn() {
-      this.turn_count += 1;
-      this.active_player += 1;
-      this.active_player %= this.player_count;
+      if (this.negotiate_count >= this.player_count) {
+        this.game_over = true
+      } else {
+        this.turn_count += 1;
+        this.active_player += 1;
+        this.active_player %= this.player_count;
+      }
     }
 
     pull_stone_from_bag(stone) {
@@ -336,6 +388,7 @@
 
       console.log(game.active_player, "negotiated for", this.new_stone);
 
+      game.negotiate_count++;
       game.next_turn();
     }
   }
@@ -505,7 +558,7 @@ Hands:
     against
     <select bind:value={current_action.attacked_faction}>
       {#each game
-        .factions_in_territory(current_action.territory) // TODO
+        .factions_in_territory_for_battle(current_action.territory, current_action.faction) // TODO
         .map((piece) => ({ text: piece })) as piece}
         <option value={piece.text}>
           {piece.text}
@@ -595,10 +648,20 @@ Hands:
     }}>DEBUG Cancel</button
   >
 {:else}
+
+{#if !game.game_over}
   <button on:click={recruit}>Recruit</button>
   <button on:click={battle}>Battle</button>
   <button on:click={march}>March</button>
   <button on:click={negotiate}>Negotiate</button>
+{:else}
+Game over!
+<br />
+Winning Faction: {game.winning_faction()}
+<br />
+Winning Player: Not ready
+<!-- Winning Player: {game.winning_player()} -->
+{/if}
 
   <br />
 {/if}
@@ -736,6 +799,7 @@ Hands:
   - Pieces and Territory types should be merged as a 'Faction' object, with color defined elsewhere
   - Action resolution code should be contained inside the Game object
   - Typescript!
+  - Ties involving 3 stones may not be resolved correctly
 </pre>
 
 <style>
