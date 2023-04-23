@@ -451,7 +451,7 @@ Hands:
     Swap:
     <select bind:value={current_action.sacrifice}>
       {#each game
-        .active_player_hand()
+        .factions_in_active_hand()
         .map((piece) => ({ text: piece })) as piece}
         <option value={piece.text}>
           {piece.text}
@@ -469,7 +469,7 @@ Hands:
     Recruit:
     <select bind:value={current_action.recruit}>
       {#each game
-        .active_player_hand()
+        .factions_in_active_hand()
         .map((piece) => ({ text: piece })) as piece}
         <option value={piece.text}>
           {piece.text}
@@ -726,6 +726,17 @@ Hands:
     {/each}
   {/if}
 </svg>
+
+<pre>
+  TODO:
+  - End of game, when all players Negotiate consecutively, the game ends
+  - If a player has no stones, limit their actions
+  - Scoring for an AI - need to know what faction is winning on the board, and what the current score is for the player
+    - For the sake of research, perhaps the AI should have full knowledge of everyone's hand anfd the bag?
+  - Pieces and Territory types should be merged as a 'Faction' object, with color defined elsewhere
+  - Action resolution code should be contained inside the Game object
+  - Typescript!
+</pre>
 
 <style>
   .heavy {
