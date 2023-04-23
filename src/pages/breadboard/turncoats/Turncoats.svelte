@@ -1,4 +1,5 @@
 <script>
+  // lang="ts"
   import { onMount } from "svelte";
 
   import Flag from "./flag.svg";
@@ -20,26 +21,6 @@
     Black: "black",
   };
 
-  function winning_color_in(place) {
-    let count = {};
-    let maxCount = 0;
-    let winner = "none";
-
-    for (let i = 0; i < place.length; i++) {
-      let piece = place[i];
-      count[piece] = (count[piece] || 0) + 1;
-
-      if (count[piece] > maxCount) {
-        maxCount = count[piece];
-        winner = piece;
-      } else if (count[piece] === maxCount) {
-        winner = "none";
-      }
-    }
-
-    return winner;
-  }
-
   class Territory {
     constructor(row, col, type) {
       this.col = col;
@@ -48,45 +29,149 @@
       this.pieces = [];
     }
 
-    winning_color() {
-      // TODO: Not duplicated to winning_color_in because
-      // flag and axe rules need to be added
+    has_faction(faction) {
+      return this.pieces.includes(faction);
+    }
+  }
+
+
+
+  class Game {
+    constructor() {
+      this.player_count = 2;
+      this.active_player = 0;
+      this.turn_count = 0;
+      this.territories = [];
+      this.movement_graph = [];
+      this.bag = [];
+      this.hands = [];
+      this.flag = [];
+      this.axe = [];
+    }
+
+    active_player_hand() {
+      return this.hands[this.active_player];
+    }
+
+    factions_in_active_hand() {
+      return [...new Set(this.active_player_hand())];
+    }
+
+    factions_in_territory(territory_index) {
+      return [...new Set(this.territories[territory_index].pieces)];
+    }
+
+    count_duplicates(array, duplicate) {
+      let duplicates = 0;
+      for (let value of array) {
+        if (value == duplicate) {
+          duplicates++;
+        }
+      }
+      return duplicates;
+    }
+
+    territories_with_faction(faction) {
+      let matching_territories = [];
+      for (let i = 0; i < this.territories.length; i++) {
+        if (this.territories[i].has_faction(faction)) {
+          matching_territories.push(i);
+        }
+      }
+      return matching_territories;
+    }
+
+    
+    winning_color_from(array) {
       let count = {};
       let maxCount = 0;
-      let winner = "green";
+      let winner = "tie";
 
-      for (let i = 0; i < this.pieces.length; i++) {
-        let piece = this.pieces[i];
+      for (let i = 0; i < array.length; i++) {
+        let piece = array[i];
         count[piece] = (count[piece] || 0) + 1;
 
         if (count[piece] > maxCount) {
           maxCount = count[piece];
           winner = piece;
         } else if (count[piece] === maxCount) {
-          winner = "green";
+          winner = "tie";
         }
       }
 
       return winner;
     }
-  }
+    
+    winning_color(territory) {
+      let winner = this.winning_color_from(territory.pieces)
+      
+      let axe_winner = this.winning_color_from(this.axe)
+      let flag_winner = this.winning_color_from(this.flag)
 
-  class Game {
-    constructor(player_count) {
-      this.player_count = player_count;
-      this.current_player = 0;
-      this.turn_count = 0;
-      this.territories = [];
-      this.bag = [];
-      this.hands = [];
-      this.flag = []
-      this.axe = []
+      if (winner == "tie" && territory.has_faction(axe_winner)) {
+        winner = axe_winner
+      }
+
+      if (winner == "tie" && territory.has_faction(flag_winner)) {
+        winner = flag_winner
+      }
+
+      if (winner == "tie") {
+        winner = "green"
+      }
+
+      return winner;
     }
 
-    setup() {
+    territories_with_faction_for_battle(faction) {
+      let matching_territories = [];
+      for (let i = 0; i < this.territories.length; i++) {
+        if (this.territories[i].has_faction(faction)) {
+          let has_other = false;
+          // let other in this.territories[i].pieces
+          for (let j = 0; j < this.territories[i].pieces.length; j++) {
+            const other = this.territories[i].pieces[j];
+            if (other !== faction && this.territories[i].has_faction(other)) {
+              has_other = true;
+              break;
+            }
+          }
+          if (has_other) {
+            matching_territories.push(i);
+          }
+        }
+      }
+      return matching_territories;
+    }
+
+    count_factions_in_active_hand(faction) {
+      return this.count_duplicates(this.active_player_hand(), faction);
+    }
+
+    count_factions_in_territory(territory, faction) {
+      let x = this.count_duplicates(
+        this.territories[territory].pieces,
+        faction
+      );
+      console.log(x);
+      return x;
+    }
+
+    territories_next_to(territory) {
+      return this.movement_graph[territory];
+    }
+
+    setup(players = 2) {
+      this.player_count = players;
+      this.turn_count = 0;
+      this.active_player = 0;
+
       this.bag = Array(21)
         .fill([PieceType.Red, PieceType.Blue, PieceType.Black])
         .flat();
+
+      this.axe = []
+      this.flag = []
 
       // TODO: Reset Grid Pieces
       this.territories = [
@@ -104,17 +189,37 @@
         // new Territory(1, 2, TerritoryType.Blocked),
       ];
 
+      this.movement_graph = {
+        0: [1, 3, 4],
+        1: [2, 4],
+        2: [1, 5],
+        3: [0, 4, 6],
+        4: [0, 1, 3, 6, 7],
+        5: [2, 8, 9],
+        6: [3, 4, 7],
+        7: [4, 6, 8],
+        8: [7, 5, 9, 10],
+        9: [5, 8, 10],
+        10: [8, 9],
+      };
+
       this.hands = Array.from(Array(this.player_count), () => []);
 
       // console.log("Territory")
       for (let i = 0; i < this.territories.length; i++) {
         for (let j = 0; j < 2; j++) {
           if (this.territories[i].type == TerritoryType.Red) {
-            this.territories[i].pieces.push(pull_stone_from_bag(PieceType.Red));
+            this.territories[i].pieces.push(
+              this.pull_stone_from_bag(PieceType.Red)
+            );
           } else if (this.territories[i].type == TerritoryType.Blue) {
-            this.territories[i].pieces.push(pull_stone_from_bag(PieceType.Blue));
+            this.territories[i].pieces.push(
+              this.pull_stone_from_bag(PieceType.Blue)
+            );
           } else if (this.territories[i].type == TerritoryType.Black) {
-            this.territories[i].pieces.push(pull_stone_from_bag(PieceType.Black));
+            this.territories[i].pieces.push(
+              this.pull_stone_from_bag(PieceType.Black)
+            );
           } else {
             this.territories[i].pieces.push(pull_from_bag());
           }
@@ -122,33 +227,29 @@
       }
 
       // Hands
-      for (let i = 0; i < hands.length; i++) {
+      for (let i = 0; i < this.hands.length; i++) {
         for (let j = 0; j < 8; j++) {
-          hands[i].push(pull_from_bag());
+          this.hands[i].push(pull_from_bag());
         }
       }
     }
 
     next_turn() {
       this.turn_count += 1;
-      this.current_player += 1;
-      this.current_player %= this.player_count;
+      this.active_player += 1;
+      this.active_player %= this.player_count;
+    }
+
+    pull_stone_from_bag(stone) {
+      const index = this.bag.indexOf(stone);
+      let piece = this.bag.splice(index, 1)[0];
+      this.bag = this.bag;
+      return piece;
     }
   }
 
-  let territories = [];
-  let bag = [];
-  let hand_count = 2;
-  let hands = [];
-
-  let current_turn = 0;
-
-  function pull_stone_from_bag(stone) {
-    const index = bag.indexOf(stone);
-    let piece = bag.splice(index, 1)[0];
-    bag = bag;
-    return piece;
-  }
+  let game = new Game();
+  game.setup(2);
 
   function remove_stone_from(stone, place) {
     const index = place.indexOf(stone);
@@ -157,58 +258,15 @@
   }
 
   function pull_from_bag() {
-    let piece = bag.splice(Math.floor(Math.random() * bag.length), 1)[0];
-    bag = bag;
+    let piece = game.bag.splice(
+      Math.floor(Math.random() * game.bag.length),
+      1
+    )[0];
+    game.bag = game.bag;
     return piece;
   }
 
-  function reset() {
-    console.log("Resetting!");
-
-    bag = Array(21)
-      .fill([PieceType.Red, PieceType.Blue, PieceType.Black])
-      .flat();
-
-    // TODO: Reset Grid Pieces
-    territories = [
-      new Territory(0, 1, TerritoryType.Normal),
-      new Territory(0, 2, TerritoryType.Normal),
-      new Territory(0, 3, TerritoryType.Red),
-      new Territory(1, 0, TerritoryType.Normal),
-      new Territory(1, 1, TerritoryType.Normal),
-      new Territory(1, 3, TerritoryType.Normal),
-      new Territory(2, 1, TerritoryType.Blue),
-      new Territory(2, 2, TerritoryType.Normal),
-      new Territory(2, 3, TerritoryType.Normal),
-      new Territory(2, 4, TerritoryType.Normal),
-      new Territory(3, 3, TerritoryType.Black),
-      // new Territory(1, 2, TerritoryType.Blocked),
-    ];
-
-    hands = Array.from(Array(hand_count), () => []);
-
-    // console.log("Territory")
-    for (let i = 0; i < territories.length; i++) {
-      for (let j = 0; j < 2; j++) {
-        if (territories[i].type == TerritoryType.Red) {
-          territories[i].pieces.push(pull_stone_from_bag(PieceType.Red));
-        } else if (territories[i].type == TerritoryType.Blue) {
-          territories[i].pieces.push(pull_stone_from_bag(PieceType.Blue));
-        } else if (territories[i].type == TerritoryType.Black) {
-          territories[i].pieces.push(pull_stone_from_bag(PieceType.Black));
-        } else {
-          territories[i].pieces.push(pull_from_bag());
-        }
-      }
-    }
-
-    // Hands
-    for (let i = 0; i < hands.length; i++) {
-      for (let j = 0; j < 8; j++) {
-        hands[i].push(pull_from_bag());
-      }
-    }
-  }
+  // Hexagons
 
   function hex_x(col, row, bias_x, hexSize = 60) {
     return (
@@ -241,13 +299,7 @@
     return pointString;
   }
 
-  function next_turn() {
-    current_turn += 1;
-    current_turn %= hand_count;
-  }
-
   // ACTIONS
-
   let current_action;
 
   const ActionTypes = {
@@ -271,20 +323,20 @@
       this.sacrifice = undefined;
     }
     cancel() {
-      bag.push(this.new_stone);
-      bag = bag;
+      game.bag.push(this.new_stone);
+      game.bag = game.bag;
     }
     resolve() {
-      bag.push(this.sacrifice);
-      bag = bag;
+      game.bag.push(this.sacrifice);
+      game.bag = game.bag;
 
-      remove_stone_from(this.sacrifice, hands[current_turn]);
-      hands[current_turn].push(this.new_stone);
-      hands[current_turn] = hands[current_turn];
+      remove_stone_from(this.sacrifice, game.hands[game.active_player]);
+      game.hands[game.active_player].push(this.new_stone);
+      game.hands[game.active_player] = game.hands[game.active_player];
 
-      console.log(current_turn, "negotiated for", this.new_stone);
+      console.log(game.active_player, "negotiated for", this.new_stone);
 
-      next_turn();
+      game.next_turn();
     }
   }
   class Recruit {
@@ -296,13 +348,65 @@
     }
     cancel() {}
     resolve() {
-      remove_stone_from(this.recruit, hands[current_turn]);
-      hands[current_turn] = hands[current_turn];
+      remove_stone_from(this.recruit, game.hands[game.active_player]);
+      game.hands[game.active_player] = game.hands[game.active_player];
 
-      territories[this.territory].pieces.push(this.recruit);
-      territories = territories;
+      game.territories[this.territory].pieces.push(this.recruit);
+      game.territories = game.territories;
 
-      next_turn();
+      game.next_turn();
+    }
+  }
+  class March {
+    constructor() {
+      this.type = ActionTypes.March;
+      this.doing_text = "Marching...";
+      this.from_territory = 0;
+      this.to_territory = 0;
+      this.amount = 1;
+      this.faction = undefined;
+    }
+    cancel() {}
+    resolve() {
+      remove_stone_from(this.faction, game.hands[game.active_player]);
+      game.flag.push(this.faction);
+      for (let i = 0; i < this.amount; i++) {
+        remove_stone_from(
+          this.faction,
+          game.territories[this.from_territory].pieces
+        );
+        game.territories[this.to_territory].pieces.push(this.faction);
+      }
+      game.territories = game.territories;
+      game.next_turn();
+    }
+  }
+  class Battle {
+    constructor() {
+      this.type = ActionTypes.Battle;
+      this.doing_text = "Battling...";
+      this.territory = 0;
+      this.amount = 1;
+      this.faction = undefined;
+      this.attacked_faction = undefined;
+    }
+    cancel() {}
+    resolve() {
+      remove_stone_from(this.faction, game.hands[game.active_player]);
+      game.axe.push(this.faction);
+      for (let i = 0; i < this.amount; i++) {
+        if (
+          game.territories[this.territory].has_faction(this.attacked_faction)
+        ) {
+          remove_stone_from(
+            this.attacked_faction,
+            game.territories[this.territory].pieces
+          );
+          game.bag.push(this.attacked_faction)
+        }
+      }
+      game.territories = game.territories;
+      game.next_turn();
     }
   }
 
@@ -314,12 +418,15 @@
     current_action = new Recruit();
   }
 
-  reset();
+  function march() {
+    current_action = new March();
+  }
 
-  let game = new Game(hand_count)
+  function battle() {
+    current_action = new Battle();
+  }
 
-  $: hand_count, reset();
-  $: game.player_count = hand_count, game.setup();
+  let hand_count = 2;
 </script>
 
 <h1>Turncoats</h1>
@@ -330,7 +437,7 @@ Hands:
 
 <br />
 
-<button on:click={reset}>Reset State</button>
+<button on:click={game.setup(hand_count)}>Reset State</button>
 
 <br />
 
@@ -343,7 +450,9 @@ Hands:
     Drew: {current_action.new_stone}
     Swap:
     <select bind:value={current_action.sacrifice}>
-      {#each hands[current_turn].map((piece) => ({ text: piece })) as piece}
+      {#each game
+        .active_player_hand()
+        .map((piece) => ({ text: piece })) as piece}
         <option value={piece.text}>
           {piece.text}
         </option>
@@ -359,7 +468,9 @@ Hands:
   {:else if current_action.type == ActionTypes.Recruit}
     Recruit:
     <select bind:value={current_action.recruit}>
-      {#each hands[current_turn].map((piece) => ({ text: piece })) as piece}
+      {#each game
+        .active_player_hand()
+        .map((piece) => ({ text: piece })) as piece}
         <option value={piece.text}>
           {piece.text}
         </option>
@@ -367,7 +478,7 @@ Hands:
     </select>
     to
     <select bind:value={current_action.territory}>
-      {#each territories.map((t, i) => ({ text: i })) as t, i (i)}
+      {#each game.territories.map((t, i) => ({ text: i })) as t, i (i)}
         <option value={i}>
           {i}
         </option>
@@ -380,6 +491,100 @@ Hands:
         current_action = undefined;
       }}>Recruit!</button
     >
+  {:else if current_action.type == ActionTypes.Battle}
+    Battle:
+    <select bind:value={current_action.faction}>
+      {#each game
+        .factions_in_active_hand()
+        .map((piece) => ({ text: piece })) as piece}
+        <option value={piece.text}>
+          {piece.text}
+        </option>
+      {/each}
+    </select>
+    against
+    <select bind:value={current_action.attacked_faction}>
+      {#each game
+        .factions_in_territory(current_action.territory) // TODO
+        .map((piece) => ({ text: piece })) as piece}
+        <option value={piece.text}>
+          {piece.text}
+        </option>
+      {/each}
+    </select>
+    from
+    <select bind:value={current_action.territory}>
+      <!-- {#if current_action.territory} -->
+      {#each game.territories_with_faction_for_battle(current_action.faction) as i}
+        <option value={i}>
+          {i}
+        </option>
+      {/each}
+      <!-- {/if} -->
+    </select>
+    with
+    <input
+      bind:value={current_action.amount}
+      type="range"
+      min="1"
+      max={game.count_factions_in_territory(
+        current_action.territory,
+        current_action.faction
+      )}
+    />
+    {current_action.amount}
+    <br />
+    <button
+      on:click={() => {
+        current_action.resolve();
+        current_action = undefined;
+      }}>Battle!</button
+    >
+  {:else if current_action.type == ActionTypes.March}
+    March:
+    <select bind:value={current_action.faction}>
+      {#each game
+        .factions_in_active_hand()
+        .map((piece) => ({ text: piece })) as piece}
+        <option value={piece.text}>
+          {piece.text}
+        </option>
+      {/each}
+    </select>
+    from
+    <select bind:value={current_action.from_territory}>
+      {#each game.territories_with_faction(current_action.faction) as i}
+        <option value={i}>
+          {i}
+        </option>
+      {/each}
+    </select>
+    to
+    <select bind:value={current_action.to_territory}>
+      {#each game.territories_next_to(current_action.from_territory) as i}
+        <option value={i}>
+          {i}
+        </option>
+      {/each}
+    </select>
+    with
+    <input
+      bind:value={current_action.amount}
+      type="range"
+      min="1"
+      max={game.count_factions_in_territory(
+        current_action.from_territory,
+        current_action.faction
+      )}
+    />
+    {current_action.amount}
+    <br />
+    <button
+      on:click={() => {
+        current_action.resolve();
+        current_action = undefined;
+      }}>March!</button
+    >
   {/if}
 
   <br />
@@ -391,8 +596,8 @@ Hands:
   >
 {:else}
   <button on:click={recruit}>Recruit</button>
-  <!-- <button>Battle</button> -->
-  <!-- <button>March</button> -->
+  <button on:click={battle}>Battle</button>
+  <button on:click={march}>March</button>
   <button on:click={negotiate}>Negotiate</button>
 
   <br />
@@ -402,7 +607,7 @@ Hands:
 <svg viewBox="0 0 1000 1000" style="width:100%;height:auto;margin:0;">
   <rect width="100%" height="100%" fill="salmon" />
 
-  {#each territories as territory, i (i)}
+  {#each game.territories as territory, i (i)}
     <polygon
       points={drawHexagon(
         hex_x(territory.col, territory.row, 120, 60),
@@ -421,14 +626,14 @@ Hands:
     </text>
   {/each}
 
-  {#each territories as territory, i (i)}
+  {#each game.territories as territory, i (i)}
     <polygon
       points={drawHexagon(
         hex_x(territory.col, territory.row, 120, 60),
         hex_y(territory.row, 120, 60),
         52
       )}
-      stroke={territory.winning_color()}
+      stroke={game.winning_color(territory)}
       stroke-width="3"
       fill="transparent"
     />
@@ -444,7 +649,7 @@ Hands:
     {/each}
   {/each}
 
-  {#each territories as territory}
+  {#each game.territories as territory}
     <polygon
       points={drawHexagon(
         hex_x(territory.col, territory.row, 120, 60),
@@ -457,7 +662,7 @@ Hands:
     />
   {/each}
 
-  {#each bag as piece, i (i)}
+  {#each game.bag as piece, i (i)}
     <circle
       cx={40 + 13 * i}
       cy={20}
@@ -468,12 +673,14 @@ Hands:
     />
   {/each}
 
-  {#each hands as hand, i (i)}
+  {#each game.hands as hand, i (i)}
     <circle
       cx={50 + 150 * i}
       cy={520}
       r="50"
-      stroke={current_turn == i % hand_count ? "green" : "transparent"}
+      stroke={game.active_player == i % game.player_count
+        ? "green"
+        : "transparent"}
       fill="white"
       stroke-width="5"
     />
@@ -492,7 +699,32 @@ Hands:
   {/each}
 
   <image x="800" y="20" width="80" height="80" href={Flag} />
+  {#if game.flag}
+    {#each game.flag as piece, i (i)}
+      <circle
+        cx={800 + 20 * i}
+        cy={20 + 80 + 20}
+        r="10"
+        stroke="white"
+        fill={piece}
+        stroke-width="1"
+      />
+    {/each}
+  {/if}
+
   <image x="800" y="160" width="80" height="80" href={Axe} />
+  {#if game.axe}
+    {#each game.axe as piece, i (i)}
+      <circle
+        cx={800 + 20 * i}
+        cy={20 + 80 + 160}
+        r="10"
+        stroke="white"
+        fill={piece}
+        stroke-width="1"
+      />
+    {/each}
+  {/if}
 </svg>
 
 <style>
