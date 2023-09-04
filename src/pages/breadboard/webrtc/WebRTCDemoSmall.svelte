@@ -59,11 +59,9 @@
     sendChannel.onclose = handleSendChannelStatusChange;
 
     pc.createOffer()
-      .then((offer) => {
-        pc.setLocalDescription(offer);
-        pc.setRemoteDescription(offer);
-      })
+      .then((offer) => 
+        pc.setLocalDescription(offer)
+      )
       .catch((err) => console.log(err));
-    console.log("done?");
   });
 </script>

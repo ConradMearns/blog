@@ -64,13 +64,20 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "10c443fb28f2600f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "2a6a804d984df4cc",
@@ -147,7 +154,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6b9710d6c6cde1a9",
+  "active": "c3ea7d9efb6964f1",
   "lastOpenFiles": [
     "public/Pasted image 20230406173540.png",
     "src/pages/blog/notes/2023-02-05 Integrating with Obsidian.md",
