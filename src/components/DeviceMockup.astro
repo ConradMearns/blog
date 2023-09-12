@@ -1,0 +1,56 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+interface Props {
+  height?: number;
+  width?: number;
+}
+const { width=512, height=294 } = Astro.props;
+
+const a = width;
+const b = height;
+const c = b - 32;
+const d = 42;
+const e = Math.round(b / 3.0);
+const f = Math.round(a / 3.6);
+
+const apx = `${a}px`;
+const bpx = `${b}px`;
+const cpx = `${c}px`;
+const dpx = `${d}px`;
+const epx = `${e}px`;
+const fpx = `${f}px`;
+
+const device_outer = `relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl outer`; //` ${outer_size}`
+const device_inner = `rounded-xl overflow-hidden inner`; //${inner_size}`
+const device_neck = `relative mx-auto bg-gray-900 dark:bg-gray-700 rounded-b-xl neck`; //${neck_size}`
+const device_base = `relative mx-auto bg-gray-800 rounded-b-xl base`; //${base_size}`
+---
+
+<!-- <Layout title="test"> -->
+  <div class={device_outer}>
+    <div class={device_inner}>
+      <slot />
+    </div>
+  </div>
+  <div class={device_neck}></div>
+  <div class={device_base}></div>
+<!-- </Layout> -->
+
+<style define:vars={{ apx, bpx, cpx, dpx, epx, fpx }}>
+  .outer {
+    height: var(--bpx);
+    max-width: var(--apx);
+  }
+  .inner {
+    height: var(--cpx);
+  }
+  .neck {
+    height: var(--dpx);
+    max-width: var(--apx);
+  }
+  .base {
+    height: var(--epx);
+    max-width: var(--fpx);
+  }
+</style>
