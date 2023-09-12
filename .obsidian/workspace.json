@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "987a7f0c3011dae2",
+        "id": "4ed2ad80e105fd08",
         "type": "tabs",
         "children": [
           {
-            "id": "c3ea7d9efb6964f1",
+            "id": "ca466452761adbb7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/blog/notes/2023-04-06 Building a Basic NodeJS Server for NixOS.md",
+                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/pages/blog/notes/2023-04-06 Building a Basic NodeJS Server for NixOS.md",
+                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "src/pages/blog/notes/2023-04-06 Building a Basic NodeJS Server for NixOS.md",
+                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/pages/blog/notes/2023-04-06 Building a Basic NodeJS Server for NixOS.md"
+                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md"
               }
             }
           }
@@ -154,18 +154,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c3ea7d9efb6964f1",
+  "active": "ca466452761adbb7",
   "lastOpenFiles": [
-    "public/Pasted image 20230406173540.png",
-    "src/pages/blog/notes/2023-02-05 Integrating with Obsidian.md",
-    "src/pages/blog/notes/2023-04-06 Building a Basic NodeJS Server for NixOS.md",
-    "README.md",
-    "src/pages/blog/notes/2023-02-05 Fusion Hooks.md",
-    "public/obs_img/Pasted image 20230205160306.png",
-    "Pasted image 20230205160306.png",
-    "notes/2023-02-05 Integrating with Obsidian.md",
-    "notes/2023-02-03 Blogging Plans.md",
-    "Fusion Hooks.md",
-    "notes/2022-08-25 of Maps of Content and Objective Outlines.md"
+    "public/Pasted image 20230911114428.png",
+    "src/components/Border.html",
+    "src/components/Border.svelte",
+    "src/components/Border.astro",
+    "src/components/ResolveMD.svelte",
+    "src/components/Markdown.svelte",
+    "src/components/marked_wiki.js",
+    "src/pages/network/Markdown.svelte",
+    "src/pages/network/Network copy.svelte",
+    "cms-server/cms-server/__init__.py",
+    "cms-server/cms-server/cms-server.py",
+    "cms-server/README.md",
+    "public/Pasted image 20230910110049.png",
+    "public/Pasted image 20230910082416.png",
+    "public/Pasted image 20230205152919.png",
+    "public/Screenshot_20230205-175700.png",
+    "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
+    "public/Pasted image 20230910082353.png",
+    "node_modules/marked/README.md",
+    "node_modules/marked/man/marked.1.md",
+    "node_modules/marked/LICENSE.md",
+    "src/content/test/test.md",
+    "node_modules/@portaljs/remark-wiki-link/README.md",
+    "node_modules/@flowershow/remark-wiki-link/README.md",
+    "node_modules/regenerator-runtime/README.md",
+    "node_modules/repeat-string/README.md",
+    "node_modules/mdast-util-wiki-link/node_modules/zwitch/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/parse-entities/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/mdast-util-to-string/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/mdast-util-to-markdown/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/longest-streak/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/is-hexadecimal/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/is-decimal/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/is-alphanumerical/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/is-alphabetical/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/character-reference-invalid/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/character-entities-legacy/readme.md",
+    "node_modules/mdast-util-wiki-link/node_modules/character-entities/readme.md",
+    "node_modules/mdast-util-wiki-link/README.md",
+    "node_modules/lodash.castarray/README.md",
+    "node_modules/lodash.isplainobject/README.md",
+    "src_archive/src/pages/breadboard/turncoats/flag.svg",
+    "src_archive/src/pages/breadboard/turncoats/battle-axe.svg",
+    "src_archive/src/assets/sailboat.jpg",
+    "src_archive/src/assets/me.jpg",
+    "src_archive/src/assets/keyb.jpg"
   ]
 }
