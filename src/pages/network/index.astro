@@ -1,0 +1,17 @@
+---
+import Network from './Network.svelte'
+import ResolveMD from '../../components/ResolveMD.svelte'
+import CenterColumn from '../../layouts/CenterColumn.astro'
+---
+
+<CenterColumn title="Network">
+    <article class="pb-64 p-4 mt-10 prose">        
+        <h1>Recursive Example</h1>
+        <ResolveMD client:only="svelte" slug="2023-09-10"/>
+
+        <hr />
+        <h1>Image Example</h1>
+        <ResolveMD client:only="svelte" slug="Pasted image 20230910112209.png"/>
+    </article>
+    <!-- <Network client:only="svelte"></Network> -->
+</CenterColumn>

@@ -1,126 +1,112 @@
 <script>
-  import { marked } from "marked";
+//   import { marked } from "marked";
 
-  const marked_wiki_2 = {
-    extensions: [
-      {
-        name: "marked_wiki_2",
-        level: "block",
-        start(src) {
-          return src.match(/\!\[\[/)?.index;
-        },
-        tokenizer(src) {
-          const rule = /^!\[\[([^[\]]*)\]\]/;
-          const match = rule.exec(src);
-          if (match) {
-            return {
-              type: "marked_wiki_2",
-              raw: match[0],
-              text: this.lexer.inlineTokens(match[1].trim()),
-            };
-          }
-        },
-        renderer(token) {
-          return `${this.parser.parseInline(token.text)}`;
-        //   return `${this.parser.parseInline(token.text)}`;
-        },
-      },
-    ],
-    async: true, // needed to tell marked to return a promise
-    async walkTokens(token) {
-      if (token.type === "marked_wiki_2") {
-        console.log("text", token.text);
-        // const res = await fetch(token.url);
-        // token.text = await res.text();
-      }
-    },
-  };
+//   const marked_wiki_2 = {
+//     extensions: [
+//       {
+//         name: "marked_wiki_2",
+//         level: "block",
+//         start(src) {
+//           return src.match(/\!\[\[/)?.index;
+//         },
+//         tokenizer(src) {
+//           const rule = /^!\[\[([^[\]]*)\]\]/;
+//           const match = rule.exec(src);
+//           if (match) {
+//             return {
+//               type: "marked_wiki_2",
+//               raw: match[0],
+//               text: this.lexer.inlineTokens(match[1].trim()),
+//             };
+//           }
+//         },
+//         renderer(token) {
+//           return `${this.parser.parseInline(token.text)}`;
+//         //   return `${this.parser.parseInline(token.text)}`;
+//         },
+//       },
+//     ],
+//     async: true, // needed to tell marked to return a promise
+//     async walkTokens(token) {
+//       if (token.type === "marked_wiki_2") {
+//         console.log("text", token.text);
+//         // const res = await fetch(token.url);
+//         // token.text = await res.text();
+//       }
+//     },
+//   };
 
-  //   const marked_wiki = {
-  //     name: "wikilink",
-  //     level: "inline", // Is this a block-level or inline-level tokenizer?
-  //     start(src) {
-  //       return src.match(/!\[\[/)?.index;
-  //     }, // Hint to Marked.js to stop and check for a match
-  //     tokenizer(src, tokens) {
-  //       const rule = /!\[\[([^[\]]+)\]\]/; // Regex for the complete token, anchor to string start
-  //       const match = rule.exec(src);
-  //       if (match) {
-  //         console.log("match", match);
-  //         const token = {
-  //           // Token to generate
-  //           type: "wikilink", // Should match "name" above
-  //           raw: match[0], // Text to consume from the source
-  //           text: match[0].trim(), // Additional custom properties
-  //         };
-  //         // this.lexer.inline(token.text, token.tokens); // Queue this data to be processed for inline tokens
-  //         return token;
-  //       }
-  //     },
-  //     renderer(token) {
-  //       return `A${this.parser.parseInline(token.text)}B\n`; // parseInline to turn child tokens into HTML
-  //     },
-  //   };
 
-  marked.use(marked_wiki_2);
+//   marked.use(marked_wiki_2);
 
-  marked.parse("Hello ![[Example]] ?").then((data) => {
-    console.log(data);
-  });
+//   marked.parse("Hello ![[Example]] ?").then((data) => {
+//     console.log(data);
+//   });
 
-  let example =
-    "A Description List:\n" +
-    ":   Topic 1   :  Description 1\n" +
-    ": **Topic 2** : *Description 2*";
+//   let example =
+//     "A Description List:\n" +
+//     ":   Topic 1   :  Description 1\n" +
+//     ": **Topic 2** : *Description 2*";
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const myParam = urlParams.get("myParam");
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const myParam = urlParams.get("myParam");
 
-  const keys = Array.from(urlParams.keys());
+//   const keys = Array.from(urlParams.keys());
 
-  import { Input, Label, Button } from "flowbite-svelte";
+//   import { Input, Label, Button } from "flowbite-svelte";
+//   import {Markdown} from "@components/ResolveMD.svelte";
 
-  const data = (async () => {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/ConradMearns/blog/main/src/pages/blog/notes/2022-12-31%20New%20Year.md"
-    );
-    const text = await response.text();
-    return await marked.parse(text);
-  })();
+//   const data = (async () => {
+//     const response = await fetch(
+//       "https://raw.githubusercontent.com/ConradMearns/blog/main/src/pages/blog/notes/2022-12-31%20New%20Year.md"
+//     );
+//     const text = await response.text();
+//     return await marked.parse(text);
+//   })();
 
-  let network = "127.0.0.1:5000";
+//   let network = "127.0.0.1:5000";
 
-  let list = null;
-  let handle_click = async () => {
-    const response = await fetch(`http://${network}/list/Daily`);
-    const text = await response.text();
-    list = text;
-    // return await marked.parse(text)
-  };
+//   let list = null;
+//   let handle_click = async () => {
+//     const response = await fetch(`http://${network}/list/Daily`);
+//     const text = await response.text();
+//     list = text;
+//     // return await marked.parse(text)
+//   };
 
-  const resolve_md = (markdown) => {
-    const regex = /!\[\[([^[\]]+)\]\]/g;
-    console.log(markdown.replace(regex, "$1"));
-    let nd = markdown.replace(
-      regex,
-      fetch(`http://${network}/get/$1`).then((data) => {
-        markdown = data;
-      })
-    );
-    return markdown;
-  };
+//   const resolve_md = (markdown) => {
+//     const regex = /!\[\[([^[\]]+)\]\]/g;
+//     console.log(markdown.replace(regex, "$1"));
+//     let nd = markdown.replace(
+//       regex,
+//       fetch(`http://${network}/get/$1`).then((data) => {
+//         markdown = data;
+//       })
+//     );
+//     return markdown;
+//   };
 
-  let get_data = "";
-  let recv = null;
-  let handle_data = async () => {
-    const response = await fetch(`http://${network}/get/${get_data}`);
-    const text = await response.blob();
-    console.log(text);
-    recv = text;
-  };
+//   let get_data = "";
+//   let recv = null;
+//   let handle_data = async () => {
+//     const response = await fetch(`http://${network}/get/${get_data}`);
+//     const text = await response.blob();
+//     console.log(text);
+//     recv = text;
+//   };
 </script>
 
-{@html example}
+
+<!-- <Markdown slug={'2023-09-10'} /> -->
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<!-- {@html example}
 
 <br />
 
@@ -158,7 +144,7 @@
       {@html marked.parse(resolve_md(t))}
     </article>
   {/await}
-{/if}
+{/if} -->
 
 <!-- {#await data}
   Loading...

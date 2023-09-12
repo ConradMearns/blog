@@ -1,0 +1,160 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Markdown from "@astrojs/markdown-component";
+
+const timezone = 'America/Los_Angeles';
+const utc = new Date().toLocaleString('en-US', {timeZone: timezone});
+---
+
+<Layout title="conrad's website">
+  <main>
+    <div class="parent">
+      <div class="div2">
+        <section class="vert">
+          <h1>嗨 — 我是康明智</h1>
+        </section>
+      </div>
+
+      <div class="div1">
+        <section class="title-card">
+          <h3>Hi, I'm</h3>
+          <h1>Conrad <span class="less-emphasis">Mearns</span></h1>
+          <h3>
+            <a href="/cv">a Data Engineer @ the Pacific Northwest National Laboratory</a>
+          </h3>
+        </section>
+
+        <section class="links">
+          <ul>
+            <li><a href="/blog">Latest Ramblings</a></li>
+            <li><a href="/breadboard">Breadboard</a></li>
+            <li><a href="/bookshelf">Bookshelf</a></li>
+            <li><a href="https://github.com/ConradMearns">Github</a></li>
+          </ul>
+        </section>
+      </div>
+
+<!-- 
+      <div class="div3">
+        <Markdown>
+            我是2022年八月开始学中文的
+        </Markdown>
+      </div> -->
+    </div>
+
+    <footer>
+      <p><a href="https://github.com/ConradMearns/blog">❤</a></p>
+      <p>{utc} - {timezone}</p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .parent {
+    display: grid;
+    grid-template-columns: 1fr max(3rem, 10vh);
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 32px;
+    grid-row-gap: 0px;
+  }
+
+  .div1 { grid-area: 1 / 1 / 2 / 2; }
+  .div2 { grid-area: 1 / 2 / 3 / 3; }
+  .div3 { grid-area: 2 / 1 / 3 / 3; }
+
+
+  body {
+    margin: 0;
+  }
+
+  html {
+    background-color: var(--color-black);
+    height: 100%;
+    color: var(--color-white);
+  }
+
+  p {
+    font-weight: 500;
+    font-family: sans-serif;
+
+  }
+
+  h1 {
+    font-size: max(2rem, 8vh);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: serif;
+    font-weight: 100;
+    color: var(--color-white);
+  }
+
+  a {
+    color: var(--c0-green);
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  a:hover {
+    color: var(--color-white);
+    text-shadow: 0 0 6px var(--color-white);
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  section.vert * {
+    writing-mode: vertical-rl;
+    margin: 0;
+    transition: 0.2s;
+  }
+
+  @media only screen and (max-width: 600px) {
+    section.vert * {
+      color: var(--color-black);
+      text-shadow: 1px 1px 1px black;
+      transition: 0.2s;
+    }
+
+  }
+
+  section {
+    margin: 5%;
+  }
+
+  section.title-card * {
+    margin: 0;
+  }
+
+  section.links * {
+    font-size: 1.7rem;
+  }
+
+  .div3 {
+    margin: 10%;
+    line-height: 1.6rem;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  footer {
+    color: var(--color-white);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+</style>

@@ -1,35 +1,20 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import { Debug } from 'astro/components';
+import CenterColumn from '@layouts/CenterColumn.astro';
 const { title } = Astro.props.frontmatter
 const { minutesRead } = Astro.props.frontmatter;
 ---
 
-<Layout title={title}>
-	<h1>{title}</h1>
-	<article>
-		<div class="info">
-			{minutesRead}
-		</div>
+<CenterColumn title={title}>
+	<ul class="navigation py-4">
+		<li><a href="/">conrads.website</a></li>
+	</ul>
+	<h1 class="text-5xl tracking-tight leading-tight drop-shadow-xl">
+        {title}
+	</h1>
+	<h5 class="text-sm">
+        {minutesRead}
+	</h5>
+	<article class="pb-64 p-4 mt-10 prose ">
 		<slot />
 	</article>
-</Layout>
-
-<style is:global>
-
-	.info {
-		padding: 0.5em;
-		background-color:lightsalmon;
-	}
-
-	article {
-		line-height: 1.5rem;
-		margin: auto;
-		padding-bottom: 100px;
-		max-width: 650px;
-	}
-
-	img {
-		max-width: 100%;
-	}
-</style>
+</CenterColumn>
