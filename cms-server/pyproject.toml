@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "cms-server"
+version = "0.1.0"
+description = ""
+authors = ["Conrad Mearns <conradmearns@pm.me>"]
+readme = "README.md"
+packages = [{include = "cms-server"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^2.3.3"
+typer = {extras = ["all"], version = "^0.9.0"}
+install = "^1.3.5"
+obsidiantools = "^0.10.0"
+flask-cors = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
