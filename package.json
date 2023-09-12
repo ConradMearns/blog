@@ -21,7 +21,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "astro": "^3.0.8",
     "flowbite": "^1.8.1",
-    "flowbite-svelte": "^0.44.8",
+    "flowbite-svelte": "^0.44.15",
     "flowbite-svelte-icons": "^0.4.3",
     "lorem-ipsum": "^2.0.8",
     "marked": "^9.0.0",
