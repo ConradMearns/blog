@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.5.0",
+    "@astrojs/markdown-component": "^1.0.5",
     "@astrojs/mdx": "^1.0.3",
+    "@astrojs/rss": "^3.0.0",
     "@astrojs/svelte": "^4.0.0",
     "@astrojs/tailwind": "^5.0.0",
     "@flowershow/remark-wiki-link": "^1.2.0",
