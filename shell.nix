@@ -1,8 +1,22 @@
 with import <nixpkgs> { };
 
+let
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-full
+      markdown
+      xcolor
+      geometry xstring
+      blindtext
+      # fonts/inter
+      ;
+  });
+in
 stdenv.mkDerivation {
   name = "node";
   buildInputs = [
+    tex
+    inotify-tools
+    # texlive.combined.scheme-full
     nodejs_latest
     nodePackages.pnpm
     openssl

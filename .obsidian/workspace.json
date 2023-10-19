@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "4ed2ad80e105fd08",
+        "id": "8760da83f5d37f06",
         "type": "tabs",
         "children": [
           {
-            "id": "ca466452761adbb7",
+            "id": "f4d9ad526c4d8f83",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
+                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
                 "mode": "source",
                 "source": false
               }
@@ -77,7 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 442.5
   },
   "right": {
     "id": "2a6a804d984df4cc",
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
+                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
+                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/pages/blog/notes/2023-09-4 Redoing this Blog.md"
+                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md"
+              }
+            }
+          },
+          {
+            "id": "459ece067fe671d8",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
               }
             }
           }
@@ -154,53 +164,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ca466452761adbb7",
+  "active": "f4d9ad526c4d8f83",
   "lastOpenFiles": [
+    "public/ConradMearns-Resume.pdf",
+    "src/pages/blog/notes/2023-10-16 Transcript Splitting.md",
+    "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
+    "public/Pasted image 20231015160904.png",
+    "public/Pasted image 20231015154958.png",
+    "public/Pasted image 20231015110411.png",
+    "public/Pasted image 20231014145548.png",
+    "public/Pasted image 20231014142825.png",
+    "src/pages/blog/notes/2023-10-06 LaTeX.md",
+    "resume/applications/sony-2023-10-09/application-playstation.md",
+    "resume/applications/sony-2023-10-09",
+    "resume/applications/notion_so-2023-10-09/application-wiki.md",
+    "resume/applications/notion_so-2023-10-09/application-software.md",
+    "resume/applications/notion_so-2023-10-09",
+    "resume/applications/microsoft-2023-10-09/application-data.md",
+    "resume/applications/microsoft-2023-10-09",
+    "resume/applications/netflix-2023-10-09/application.md",
+    "resume/applications/netflix-2023-10-09",
+    "resume/applications/discord-2023-10-09/application-video_audio.md",
+    "resume/applications/discord-2023-10-09",
+    "resume/applications/crux_climate-2023-10-09/application-fullstack.md",
+    "resume/applications/crux_climate-2023-10-09",
+    "resume/applications/project_lead_the_way-2023-10-09/application-backend.md",
+    "resume/applications/project_lead_the_way-2023-10-09",
+    "resume/applications/vityl-2023-10-09/application.md",
+    "resume/applications/vityl-2023-10-09",
+    "resume/applications/kittycad-2023-10-09/application-graphics.md",
+    "resume/applications/kittycad-2023-10-09",
+    "resume/applications/tweag-2023-10-09",
+    "resume/applications/fly_io-2023-10-09/application-infrastructure.md",
+    "resume/applications/neurons_inc-2023-10-09/application.md",
+    "resume/applications/seasony-2023-10-09/application-robotics.md",
+    "resume/applications/seasony-2023-10-09/applixation-robotics.md",
+    "resume/applications/holepunch-2023-10-09/application-general.md",
+    "resume/applications/holepunch-2023-10-09/application-p2p-engineer.md",
+    "resume/applications/holepunch-2023-10-09/application.md",
+    "resume/applications/browser_company-2023-10-09/application-developer-infrastructure.md",
+    "resume/applications/browser_company-2023-10-09/application.md",
+    "resume/applications/gummicube-2023-10-07/resume-skills.md",
+    "resume/applications/gummicube-2023-10-07/resume-experience.md",
+    "resume/applications/resilio-2023-10-07/resume-skills.md",
+    "public/Pasted image 20231006192148.png",
+    "src/pages/experiments/turncoats/flag.svg",
+    "src/pages/experiments/turncoats/battle-axe.svg",
     "public/Pasted image 20230911114428.png",
-    "src/components/Border.html",
-    "src/components/Border.svelte",
-    "src/components/Border.astro",
-    "src/components/ResolveMD.svelte",
-    "src/components/Markdown.svelte",
-    "src/components/marked_wiki.js",
-    "src/pages/network/Markdown.svelte",
-    "src/pages/network/Network copy.svelte",
-    "cms-server/cms-server/__init__.py",
-    "cms-server/cms-server/cms-server.py",
-    "cms-server/README.md",
-    "public/Pasted image 20230910110049.png",
-    "public/Pasted image 20230910082416.png",
-    "public/Pasted image 20230205152919.png",
-    "public/Screenshot_20230205-175700.png",
-    "src/pages/blog/notes/2023-09-4 Redoing this Blog.md",
-    "public/Pasted image 20230910082353.png",
-    "node_modules/marked/README.md",
-    "node_modules/marked/man/marked.1.md",
-    "node_modules/marked/LICENSE.md",
-    "src/content/test/test.md",
-    "node_modules/@portaljs/remark-wiki-link/README.md",
-    "node_modules/@flowershow/remark-wiki-link/README.md",
-    "node_modules/regenerator-runtime/README.md",
-    "node_modules/repeat-string/README.md",
-    "node_modules/mdast-util-wiki-link/node_modules/zwitch/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/parse-entities/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/mdast-util-to-string/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/mdast-util-to-markdown/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/longest-streak/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/is-hexadecimal/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/is-decimal/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/is-alphanumerical/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/is-alphabetical/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/character-reference-invalid/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/character-entities-legacy/readme.md",
-    "node_modules/mdast-util-wiki-link/node_modules/character-entities/readme.md",
-    "node_modules/mdast-util-wiki-link/README.md",
-    "node_modules/lodash.castarray/README.md",
-    "node_modules/lodash.isplainobject/README.md",
-    "src_archive/src/pages/breadboard/turncoats/flag.svg",
-    "src_archive/src/pages/breadboard/turncoats/battle-axe.svg",
-    "src_archive/src/assets/sailboat.jpg",
-    "src_archive/src/assets/me.jpg",
-    "src_archive/src/assets/keyb.jpg"
+    "public/Pasted image 20230910110049.png"
   ]
 }

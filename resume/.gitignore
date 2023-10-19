@@ -1,0 +1,6 @@
+_markdown*
+*.aux
+*.log
+*.in
+*.lua
+*.out

@@ -1,0 +1,55 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+interface BlogPage {
+  title: string;
+  date: string;
+  Content: any;
+}
+const pages = await Astro.glob<BlogPage>("./blog/notes/*.md").then((x) =>
+  x.sort((b, a) => ("" + a.frontmatter.date).localeCompare(b.frontmatter.date))
+);
+
+import { Card } from "flowbite-svelte";
+---
+
+<Layout title="conrad's website">
+  <main class="flex h-screen">
+    <div class="m-auto">
+      <div class="font-medium font-serif">
+        <h2 class="text-2x mt-32">Howdy, I'm</h2>
+        <h1 class="text-5xl tracking-wide leading-relaxed drop-shadow-xl">
+          Conrad Mearns
+        </h1>
+        <h3 class="text-2xl leading-loose">
+          and these are some things on my mind...
+        </h3>
+      </div>
+
+      <div class="p-4">
+        {
+          pages.map((page) => (
+            <Card
+            //   client:only="svelte"
+              href={page.url}
+              horizontal
+              class="mb-3 p-2 border-none bg-inherit hover:bg-stone-200"
+            >
+              <div>
+                <h6 class="text-xs">{page.frontmatter.date}</h6>
+                <h5 class="mb-1 text-base font-bold">
+                  {page.frontmatter.title}
+                </h5>
+                <!--
+                    <div class="w-96">
+                        <page.Content client:load="svelte" />
+                        </div>
+                -->
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>

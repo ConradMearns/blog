@@ -1,0 +1,29 @@
+---
+title: Breadboard
+layout: ../../layouts/Layout.astro
+---
+
+import List from "./List.astro";
+import CenterColumn from "../../layouts/CenterColumn.astro";
+
+<main class="flex h-[80vh]">
+  <div class="lg:m-auto lg:w-1/3 w-full m-4">
+    <ul class="navigation py-2">
+      <li>
+        <a href="/">conrads.website</a>
+      </li>
+    </ul>
+    <h1 class="py-6 text-5xl tracking-tight leading-tight drop-shadow-xl">
+      Web Experiments
+    </h1>
+    <div class="py-2 prose-2xl">
+      Experimentation is the most fun on the web,
+      so I've been working to establish a better way to experiment and share what I'm learning and building.
+
+      Details about each of these systems is still currently missing, but you're welcome to explore!
+    </div>
+  </div>
+
+</main>
+
+<List />

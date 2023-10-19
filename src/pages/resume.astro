@@ -1,0 +1,66 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { Content as Experience } from "./resume-experience.md";
+import { Content as Skills } from "./resume-skills.md";
+---
+
+<Layout title="conrad's resume">
+  <main class="bg-zinc-400 text-white min-h-screen text-xs">
+    <div class="w-2/3 print:m-0 m-auto min-h-screen h-full">
+      <div class="w-full min-h-screen h-full print:p-0 p-16" >
+        
+        <div class="text-center">
+          <div class="pb-8">
+            <h1>Conrad Mearns</h1>
+            <h2>+1 (208) 255-9280</h2>
+            Results-oriented "Full-Stack" Engineer with a wide background in
+            frontend, ETL, microservices, cloud technologies, embedded
+            development, and rapid prototyping. Passionate for pair programming,
+            mentoring, and DevX practices to accelerate growth. Seeking to solve
+            meaningful problems in the World and Web today.
+          </div>
+          <!-- <svg class="w-full h-[8px]">
+            <line
+              x1="0"
+              y1="0"
+              x2="100%"
+              y2="0"
+              style="stroke: black; stroke-width:1;"></line>
+          </svg> -->
+        </div>
+
+        <div class="">
+          <Experience />
+        </div>
+
+        <!-- <svg class="w-[8px] min-h-screen h-full justify-self-center">
+          <line
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="100%"
+            style="stroke: black; stroke-width:1;"></line>
+        </svg> -->
+
+        <div class="">
+          <Skills />
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <style>
+    @page {
+      size: 8.5in 11.5in;
+      /* margin: 0.25in; */
+    }
+    @media print {
+      main{
+        column-count: 2;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+      }
+    }
+  </style>
+</Layout>

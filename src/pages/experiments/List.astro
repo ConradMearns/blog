@@ -1,0 +1,37 @@
+---
+import DeviceMockup from "@components/DeviceMockup.astro";
+
+import { Debug } from "astro/components";
+
+const pages = await Astro.glob("./**/*.astro");
+
+const n = 100
+
+const colors = [
+  `bg-rose-${n}`,
+  `bg-lime-${n}`,
+  `bg-blue-${n}`
+]
+let color_id = 0
+const get_color = () => {
+  color_id ++
+  color_id = (color_id % colors.length)
+  return colors[color_id]
+}
+
+const color_pages = pages.map((page) => {return {page: page, color: get_color()}})
+---
+
+<!-- <Debug {BreadboardIndex} /> -->
+{
+  color_pages.map((data) => (
+    <div class={`${data.color} py-20`}>
+      <DeviceMockup width={700} height={400}>
+        <iframe class="w-full h-full" src={data.page.url} />
+      </DeviceMockup>
+      <div class="text-center text-xl">
+        <a href={data.page.url}>{data.page.url}</a>
+      </div>
+    </div>
+  ))
+}

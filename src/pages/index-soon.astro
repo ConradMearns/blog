@@ -1,0 +1,152 @@
+---
+import { Image } from 'astro:assets';
+import coverImage from '../assets/cover.jpg';
+import Layout from "@layouts/Layout.astro";
+
+import { Img } from 'astro-imagetools/components';
+
+interface BlogPage {
+  title: string;
+  date: string;
+  Content: any;
+}
+const pages = await Astro.glob<BlogPage>("./blog/notes/*.md").then((x) =>
+  x.sort((b, a) => ("" + a.frontmatter.date).localeCompare(b.frontmatter.date))
+);
+
+const circle = "400px"
+
+---
+
+<Layout title="conrad's website">
+  <main class="bg-zinc-800 min-h-screen">
+
+    <!-- <div class="sticky top-0 z-10 w-full  border-pink-900 bg-zinc-100 ">
+      <h1 class="bg-clip-text text-transparent bg-gradient-to-b from-pink-900 to-pink-900 rounded py-2 px-6 font-extralight text-2xl sm:text-4xl font-serif">Conrad Mearns</h1>
+    </div> -->
+    
+
+    <div class="relative top-0 border-b-2 border-emerald-300">
+        <Img
+          src="/src/assets/cover.jpg"
+          alt="Conrad, sitting on a driftwood stump off the coast of Oregon."
+          fit="cover"
+          position="bottom"
+          aspect={16/7}
+          layout="constrained"
+          />
+          
+      <!-- class="aspect-square sm:aspect-[16/7] object-bottom object-cover"  -->
+
+      <!-- <Image 
+        src={coverImage} 
+        class="aspect-square sm:aspect-[16/7] object-bottom object-cover" 
+        width=4000 alt="Conrad, sitting on a driftwood stump off the coast of Oregon."
+      /> -->
+      
+      <!-- Linear Gradient -->
+      <div class="absolute  top-0 left-0 w-full h-full" style="background: linear-gradient(180deg, rgba(24.44, 24.44, 24.44, 0) 32%, rgb(39 39 42) 100%)"></div>
+      
+      <!-- Name callout -->
+      <!-- <div class="absolute top-0 w-full border-y-4 border-pink-900 bg-zinc-300 bg-opacity-60">
+        <h1 class="bg-clip-text text-transparent bg-gradient-to-b from-pink-900 to-pink-900 rounded py-2 px-6 font-extralight text-2xl sm:text-4xl font-serif">Conrad Mearns</h1>
+      </div> -->
+      
+      <!-- Circle -->
+      <div class="absolute  top-5 left-0 h-4/5 w-full flex justify-center no-items-end sm:items-center ">
+        <div class="ease-in-out duration-300 no-h-2/3 sm:h-full aspect-square border-[#7EFFC9] border-[4vw] sm:border-[8vw] rounded-full" style=`mix-blend-mode: exclusion;`></div> 
+      </div>
+      
+    </div>
+
+    
+
+    <div class="sticky top-0 flex justify-center w-full border-b-2 border-emerald-300 bg-zinc-800 ">
+      <h1 class="text-emerald-300 text-xl sm:text-4xl font-serif tracking-widest  m-3">Conrad Mearns</h1>
+    </div>
+
+    <!-- <div class="bg-emerald-300 h-1"></div>     -->
+
+    <div class="flex justify-center p-8">
+      <h2 class="text-7xl text-center tracking-widest text-emerald-200">COMING SOON</h2>
+    </div>
+    <div class="flex justify-center p-8">
+      <p class="text-emerald-100">Been workin on this for a while</p>
+    </div>
+
+
+    <h2 class="text-5xl text-center tracking-widest text-emerald-200 font-serif">Projects</h2>
+    <div class="flex justify-left gap-4 flex-row p-8">
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Xiao Seeed Modular Keyboard</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">ESP32 Breadboard Keyboard</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Astro.js Blog with Veilid CMS</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Capability Oriented Project Planning</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">reMarkable Hacking</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Encrypted Drives on NixOS</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Inverse Architecture Deployment</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Constellated Storage and Computing</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Computer Assisted Organization</h3>
+    </div>
+
+    <h2 class="text-5xl text-center tracking-widest text-emerald-200 font-serif">Web Experiments</h2>
+    <div class="flex justify-left gap-4 flex-row p-8">
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Turncoats AI</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Git CMS</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Svelte Pomodoro</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Astro.js RSS Reader</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">WebRTC</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">PWA Share Targets</h3>
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">Recursive Remote Markdown Rendering</h3>
+    </div>
+
+
+    <h2 class="text-5xl text-center tracking-widest text-emerald-200 font-serif">Logs</h2>
+    <div class="flex justify-left gap-4 flex-row p-8">
+
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">2023-09-29</h3>
+
+      <ul class="space-y-0 text-gray-500 list-disc list-inside dark:text-gray-400">
+        <li>List item one</li>
+        <li>List item two with subitems:
+            <ul class="pl-5 mt-0 space-y-0 list-decimal list-inside">
+                <li>Subitem 1</li>
+                <li>Subitem 2</li>
+            </ul>
+        </li>
+        <li>Final list item</li>
+      </ul>
+    
+    </div>
+
+
+    <h2 class="text-5xl text-center tracking-widest text-emerald-200 font-serif">Daily Notes</h2>
+    <div class="flex justify-left gap-4 flex-row p-8">
+
+      <h3 class="text-xl w-32 tracking-widest text-emerald-100 font-serif">2023-09-29</h3>
+
+      <ul class="space-y-0 text-gray-500 list-disc list-inside dark:text-gray-400">
+        <li>List item one</li>
+        <li>List item two with subitems:
+            <ul class="pl-5 mt-0 space-y-0 list-decimal list-inside">
+                <li>Subitem 1</li>
+                <li>Subitem 2</li>
+            </ul>
+        </li>
+        <li>Final list item</li>
+      </ul>
+    
+    </div>
+
+
+    <h2 class="text-5xl text-center tracking-widest text-emerald-200 font-serif">Posts</h2>
+    <div class="flex justify-left gap-4 flex-row flex-wrap p-8">
+      {pages.map((page) => (
+        <p class="text-white w-32">Hello: {page.url}</p>
+      ))}
+    </div>
+
+
+    <div class="h-screen"></div>
+
+  </main>
+</Layout>

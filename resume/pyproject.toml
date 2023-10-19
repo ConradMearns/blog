@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "resume"
+version = "0.1.0"
+description = ""
+authors = ["Conrad Mearns <conradmearns@pm.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+sane-build = "^7.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

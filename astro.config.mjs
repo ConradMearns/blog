@@ -7,6 +7,8 @@ import { defineConfig } from "astro/config";
 // import remarkToc from 'remark-toc';
 import remarkWikiLink from "@flowershow/remark-wiki-link";
 
+import { astroImageTools } from "astro-imagetools";
+
 const pageUrlPathPrefix = "blog/notes/";
 
 //Https for local development
@@ -27,6 +29,7 @@ export default defineConfig({
     }),
     svelte(),
     mdx(),
+    astroImageTools,
   ],
   // vite: {
   //   ssr: {

@@ -1,0 +1,18 @@
+[[package]]
+name = "sane-build"
+version = "7.3"
+description = "Make, but Sane"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.9"
+content-hash = "271561fcf2fb5c93d88c712064c65742f55699cbab66216967c1f8be27a0b234"
+
+[metadata.files]
+sane-build = [
+    {file = "sane-build-7.3.tar.gz", hash = "sha256:2fac7ac12d353340608d1e7d3969431366286e7ec8b02334bef68effa27168c2"},
+    {file = "sane_build-7.3-py3-none-any.whl", hash = "sha256:5913ffebd327e143aeb5afdda69123adffc101c0724669da9b5e4eb19d0329bb"},
+]
