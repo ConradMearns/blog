@@ -1,8 +1,8 @@
-// const stones_per_hand = 8;
-// const stones_per_faction = 21;
+const stones_per_hand = 8;
+const stones_per_faction = 21;
 
-const stones_per_hand = 2;
-const stones_per_faction = 10;
+// const stones_per_hand = 2;
+// const stones_per_faction = 10;
 
 export interface AdjacencyMap {
   [cellId: number]: number[];
@@ -401,7 +401,7 @@ export function generatePossibleNegotiateActions(
 }
 
 export function generatePossibleRecruitActions(game: Game): RecruitAction[] {
-  const factions = factions_in_hand(game, currentPlayer(game));
+  const factions = factions_in_hand(game, current_player(game));
   const recruitActions: RecruitAction[] = [];
 
   // Generate combinations of drawn and sacrifice factions
@@ -434,12 +434,13 @@ function range(n: number): number[] {
 
 export function generatePossibleMarchActions(game: Game): MarchAction[] {
   // const factions: Faction[] = ['red', 'blue', 'black'];
-  const factions = factions_in_hand(game, currentPlayer(game));
+  const factions = factions_in_hand(game, current_player(game));
   const marchActions: MarchAction[] = [];
 
   factions.forEach((faction) => {
     for (let f in cellsWithFaction(game, faction)) {
-      for (let t in adjacency[f]) {
+      for (let ti in adjacency[f]) {
+        const t = adjacency[f][ti]
         const cells = range(game.cells[f][faction]);
         for (let n in cells) {
           marchActions.push({
@@ -459,7 +460,7 @@ export function generatePossibleMarchActions(game: Game): MarchAction[] {
 
 export function generatePossibleBattleActions(game: Game): BattleAction[] {
   // const factions: Faction[] = ['red', 'blue', 'black'];
-  const factions = factions_in_hand(game, currentPlayer(game));
+  const factions = factions_in_hand(game, current_player(game));
   const battleActions: BattleAction[] = [];
 
   // amount: number
@@ -500,29 +501,28 @@ function deepCopy<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
-function currentPlayer(game: Game) {
+export function current_player(game: Game) {
   return game.turn % game.num_players;
 }
 
 function applyNegotiateAction(game: Game, action: NegotiateAction) {
   game.bag[action.drawn]--;
-  game.hands[currentPlayer(game)][action.drawn]++;
-  game.hands[currentPlayer(game)][action.sacrifice]--;
+  game.hands[current_player(game)][action.drawn]++;
+  game.hands[current_player(game)][action.sacrifice]--;
   game.bag[action.sacrifice]++;
 
-  game.negotiates++;
   return game;
 }
 
 function applyRecruitAction(game: Game, action: RecruitAction) {
-  game.hands[currentPlayer(game)][action.faction]--;
+  game.hands[current_player(game)][action.faction]--;
   game.cells[action.territory_id][action.faction]++;
 
   return game;
 }
 
 function applyMarchAction(game: Game, action: MarchAction) {
-  game.hands[currentPlayer(game)][action.faction]--;
+  game.hands[current_player(game)][action.faction]--;
   game.flag[action.faction]++;
 
   game.cells[action.from_territory_id][action.faction] -= action.amount;
@@ -532,7 +532,7 @@ function applyMarchAction(game: Game, action: MarchAction) {
 }
 
 function applyBattleAction(game: Game, action: BattleAction) {
-  game.hands[currentPlayer(game)][action.attacking_faction]--;
+  game.hands[current_player(game)][action.attacking_faction]--;
   game.axe[action.attacking_faction]++;
 
   game.cells[action.territory_id][action.defending_faction] -= action.amount;
@@ -541,15 +541,18 @@ function applyBattleAction(game: Game, action: BattleAction) {
 }
 
 // Function to apply an action to the game state and produce a new game state
-function applyAction(game: Game, action: Action): Game {
+export function applyAction(game: Game, action: Action): Game {
   const game_copy: Game = deepCopy(game);
   let new_game = game_copy;
   // const newGameState: Game = { ...game }; // Clone the current game state
 
   if (action.type === "negotiate") {
     new_game = applyNegotiateAction(game_copy, action as NegotiateAction);
+    game.negotiates++;
+  }else{
+    game.negotiates = 0;
   }
-
+  
   if (action.type === "recruit") {
     new_game = applyRecruitAction(game_copy, action as RecruitAction);
   }
@@ -565,6 +568,13 @@ function applyAction(game: Game, action: Action): Game {
   new_game.turn++;
 
   return new_game;
+}
+
+export function check_end_status(game: Game) {
+  if (game.negotiates == game.num_players) {
+    return true
+  }
+  return false
 }
 
 // Example usage

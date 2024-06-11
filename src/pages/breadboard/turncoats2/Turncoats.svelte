@@ -6,11 +6,11 @@
     drawHexagon,
     hex_x,
     hex_y,
-    generatePossibleNegotiateActions,
     generateGameTree,
     dominant_collection,
-    generatePossibleMarchActions,
-    cellsWithFaction,
+    applyAction,
+    generatePossibleActions,
+    check_game_status,
   } from "./turncoats";
 
   import Collection from "./RenderStones.svelte";
@@ -18,25 +18,75 @@
   let game = empty_game(2);
   game = populate(game);
 
+  function deepCopy<T>(obj: T): T {
+    return JSON.parse(JSON.stringify(obj));
+  }
+
   const hexPadding = 10; // the padding between each hexagon
+
+
+  // import { writable } from 'svelte/store';
+
+  // const initialState = 'idle';
+  // const states = ['idle', 'loading', 'success', 'error'];
+
+  // const transitions = {
+  //   idle: { to: 'loading' },
+  //   loading: { toSuccess: 'success', toError: 'error' },
+  //   success: { toIdle: 'idle' },
+  //   error: { toIdle: 'idle' }
+  // };
+
+  // const currentState = writable(initialState);
+
+  // function transition(action) {
+  //   const nextState = transitions[currentState][action];
+  //   if (nextState) {
+  //     currentState.set(nextState);
+  //   }
+  // }
+
+function strat_random () {
+  const actions = generatePossibleActions(game)
+  const r = Math.floor(Math.random() * actions.length);
+  const action = actions[r]
+
+  // if (action.type == 'negotiate') {
+  //   console.log('ayylmao')
+  // }
+  
+  console.log(action)
+
+  game = applyAction(game, action)
+}
+
 </script>
 
 <h1>Turncoats</h1>
 
+<!-- <button on:click={() => transition('to')}>Start</button> -->
+<!-- <pre>{JSON.stringify($currentState)}</pre> -->
+
 <br />
 
 <!-- <button on:click = {console.log(generatePossibleNegotiateActions(game))} >Negotiate!</button> -->
-<button on:click = {console.log(generateGameTree(null, game, 2))} >Negotiate!</button>
+<!-- <button on:click = {state = state.on(Events.NegotiateDraw)} >Negotiate!</button>
 <button>Recruit!</button>
 <button>Battle!</button>
-<button on:click = {console.log(generatePossibleMarchActions(game))} >March!</button>
+<button on:click = {console.log(generatePossibleMarchActions(game))} >March!</button> -->
+
+<button on:click={strat_random}>Random</button>
 
 <br>
 
-<button on:click = {console.log(cellsWithFaction(game, 'red'))} >Cells with Red</button>
+<button on:click = {console.log(generateGameTree(null, game, 2))} >Game Tree</button>
 
 
 <br />
+
+{#if check_game_status(game)}
+  <h1> GAME ENDED! </h1>
+{/if}
 
 <div class="resizable container">
   <svg viewBox="0 0 1000 800" style="height:100%;width:auto;margin:0;">

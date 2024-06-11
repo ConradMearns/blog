@@ -28,3 +28,9 @@
 - **Enhanced Diagnostics**: Designed and implemented a frontend for tracking distributed cloudtrace logs, improving team diagnostics capabilities and enhancing troubleshooting efficiency.
 - **Optimization Experiments**: Conducted experiments to determine optimal hyperparameters for columnar storage formats in an AWS Redshift datalake, optimizing data retrieval and analysis.
 - **Database Development**: Created new databases to track equipment maintenance and employee training requirements, enhancing operational efficiency and data management.
+#### Startup Highschool Intern
+##### XCraft - June 2015 - August 2015
+
+- Designed and fabricated product line assembly stations in Solidworks.
+- Lead Airframe Designer for a prototype 250mm VTOL racing drone.
+- Developed assembly procedures for newly XPlusOne drones.

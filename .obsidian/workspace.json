@@ -4,16 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "8760da83f5d37f06",
+        "id": "220a80bac8329830",
         "type": "tabs",
         "children": [
           {
-            "id": "f4d9ad526c4d8f83",
+            "id": "727aafbbb35ca38a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
+                "file": "resume/applications/astro_forge-2023-11-09/resume-skills.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "7411fddcd3da26ae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1e3cc01fa60810ad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "resume/resume-skills.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +66,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "xcraft",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -93,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
+                "file": "resume/applications/astro_forge-2023-11-09/resume-skills.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
+                "file": "resume/applications/astro_forge-2023-11-09/resume-skills.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +151,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md"
+                "file": "resume/applications/astro_forge-2023-11-09/resume-skills.md"
               }
             }
           },
@@ -164,8 +182,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f4d9ad526c4d8f83",
+  "active": "727aafbbb35ca38a",
   "lastOpenFiles": [
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/21c2aff5eef176e3d920d06ea36e4417.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/c77eafc1d84d0f44876a8d5f0f7b9cec.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/88f24615d7624f4420a364711781a81b.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/bc1db62dae54aa2549deb2c60d6d7468.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/73b7d93725f16da314d2482d191d4e5c.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/c315529a78ceec6a4e408a3240a39d58.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/c6ed1f24facd458895a214a2d4f30eae.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/9c0d8863447523e3f3e5da02a09c88f4.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/474df4e60eeea590a3cbee67e48a8f6d.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/bb0e865a4e1c241e7f2822bf899796a2.md.tex",
+    "resume/applications/astro_forge-2023-11-09/_markdown_ConradMearns-A9E20231109/55fd69fe6fbdebef1bf14c1d74b5ff9e.md.tex",
+    "resume/applications/astro_forge-2023-11-09/resume-skills.md",
+    "resume/resume-skills.md",
+    "resume/resume-experience.md",
+    "resume/applications/astro_forge-2023-11-09/resume-experience.md",
+    "resume/applications/astro_forge-2023-11-09/application.md",
+    "src/pages/cv.md",
+    "resume/README.md",
+    "resume/applications/astro-forge-2023-11-09/resume-skills.md",
+    "resume/applications/astro-forge-2023-11-09/resume-experience.md",
+    "resume/not-sent/vityl-2023-10-09/application.md",
+    "resume/not-sent/sony-2023-10-09/application-playstation.md",
+    "resume/not-sent/seasony-2023-10-09/application-robotics.md",
+    "resume/not-sent/resilio-2023-10-07/resume-skills.md",
+    "resume/not-sent/resilio-2023-10-07/resume-experience.md",
+    "resume/not-sent/resilio-2023-10-07/application.md",
+    "resume/not-sent/project_lead_the_way-2023-10-09/application-backend.md",
+    "resume/not-sent/notion_so-2023-10-09/application-wiki.md",
+    "resume/not-sent/notion_so-2023-10-09/application-software.md",
+    "resume/not-sent/neurons_inc-2023-10-09/application.md",
+    "resume/not-sent/netflix-2023-10-09/application.md",
+    "resume/not-sent/microsoft-2023-10-09/application-data.md",
+    "resume/not-sent/kittycad-2023-10-09/application-graphics.md",
+    "resume/not-sent/holepunch-2023-10-09/application-p2p-engineer.md",
+    "resume/not-sent/holepunch-2023-10-09/application-general.md",
+    "resume/not-sent/gummicube-2023-10-07/resume-skills.md",
     "dist/_astro/cover@3762w.fe81a971.jpeg",
     "dist/_astro/cover@3371w.9093b11b.jpeg",
     "dist/_astro/cover@3058w.cd177337.jpeg",
@@ -175,42 +229,6 @@
     "dist/_astro/cover@2667w.4de2d175.jpeg",
     "dist/_astro/cover@2197w.729bf36b.jpeg",
     "dist/_astro/cover@1650w.bb0f01e8.jpeg",
-    "dist/_astro/cover@320w.49716274.jpeg",
-    "dist/cv/index.html",
-    "dist/cv",
-    "dist/old/index.html",
-    "dist/old",
-    "dist/blog/notes/2023-10-14 Xiao Seeed Exploration/index.html",
-    "dist/blog/notes/2023-10-06 LaTeX/index.html",
-    "dist/blog/notes/2023-09-4 Redoing this Blog/index.html",
-    "dist/blog/notes/2023-04-06 Building a Basic NodeJS Server for NixOS/index.html",
-    "dist/blog/notes/2023-02-05 Integrating with Obsidian/index.html",
-    "dist/blog/notes/2023-02-05 Fusion Hooks/index.html",
-    "dist/_astro/flag.689984e1.svg",
-    "node_modules/@astrojs/markdown-component/readme.md",
-    "node_modules/@astrojs/rss/README.md",
-    "node_modules/strnum/README.md",
-    "node_modules/fast-xml-parser/README.md",
-    "node_modules/fast-xml-parser/CHANGELOG.md",
-    "src/pages/blog/notes/2023-10-16 Transcript Splitting.md",
-    "src/pages/blog/notes/2023-10-14 Xiao Seeed Exploration.md",
-    "src/pages/blog/notes/2023-10-06 LaTeX.md",
-    "resume/applications/sony-2023-10-09/application-playstation.md",
-    "resume/applications/notion_so-2023-10-09/application-wiki.md",
-    "resume/applications/notion_so-2023-10-09/application-software.md",
-    "resume/applications/microsoft-2023-10-09/application-data.md",
-    "resume/applications/netflix-2023-10-09/application.md",
-    "resume/applications/discord-2023-10-09/application-video_audio.md",
-    "resume/applications/crux_climate-2023-10-09/application-fullstack.md",
-    "resume/applications/project_lead_the_way-2023-10-09/application-backend.md",
-    "resume/applications/vityl-2023-10-09/application.md",
-    "resume/applications/kittycad-2023-10-09/application-graphics.md",
-    "resume/applications/fly_io-2023-10-09/application-infrastructure.md",
-    "resume/applications/neurons_inc-2023-10-09/application.md",
-    "resume/applications/seasony-2023-10-09/application-robotics.md",
-    "resume/applications/seasony-2023-10-09/applixation-robotics.md",
-    "resume/applications/holepunch-2023-10-09/application-general.md",
-    "resume/applications/holepunch-2023-10-09/application-p2p-engineer.md",
-    "resume/applications/holepunch-2023-10-09/application.md"
+    "dist/_astro/cover@320w.49716274.jpeg"
   ]
 }
